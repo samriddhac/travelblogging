@@ -4,9 +4,10 @@ const zoom =15;
 export default class GoogleMap extends Component {
 
 	renderMap(pos) {
-		new google.maps.Map(this.refs.gmap, {
+		new google.maps.Map(this.refs.map, {
 			zoom:zoom,
-			center: pos
+			center: pos,
+			mapTypeId: 'satellite'
 		});
 	}
 
@@ -29,7 +30,9 @@ export default class GoogleMap extends Component {
 
 	render()  {
 		return (
-			<div className="map-content" ref="gmap"></div>
+			<div className="col-md-8 bg-dusky">
+				<div id="map" className="full-page-height" ref="map"></div>
+			</div>
 		);
 	}
 }

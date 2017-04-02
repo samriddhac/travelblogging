@@ -1,0 +1,21 @@
+import countries from '../data/country.json';
+import weathericon from '../data/weather-icons.json';
+
+
+export function convertWeatherObject(obj) {
+	if(obj && obj!==null) {
+		return {
+			id: obj.id,
+			cityName:obj.name,
+			countryName:countries[obj.sys.country],
+			coord:obj.coord,
+			maxTemp:obj.main.temp_max,
+			minTemp:obj.main.temp_min,
+			humidity:obj.main.humidity,
+			localTime:'12:00:00AM',
+			icon:weathericon[obj.weather[0].id],
+			description:obj.weather[0].description
+		};
+	}
+}
+

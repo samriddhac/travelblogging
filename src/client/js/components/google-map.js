@@ -4,7 +4,7 @@ const zoom =15;
 export default class GoogleMap extends Component {
 
 	renderMap(pos) {
-		new google.maps.Map(this.refs.map, {
+		this.map = new google.maps.Map(this.refs.map, {
 			zoom:zoom,
 			center: pos,
 			mapTypeId: 'satellite'
@@ -26,6 +26,14 @@ export default class GoogleMap extends Component {
 			centercoord = this.props.coord;
 		}
 		this.renderMap(centercoord);
+	}
+
+	shouldComponentUpdate() {
+		return false;
+	}
+
+	componentWillReceiveProps() {
+		this.map.panTo();
 	}
 
 	render()  {

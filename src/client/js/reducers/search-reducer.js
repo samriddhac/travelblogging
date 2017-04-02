@@ -12,7 +12,7 @@ export default function (state=INITIAL_STATE, action) {
 				, all:[...state.all, convertWeatherObject(action.payload.data)]};
 		case FETCH_SEARCH_HISTORY : 
 
-		case SAVE_SEARCH_HISTORY: 
+		case SAVE_SEARCH_HISTORY:
 
 		default:
 			return state;

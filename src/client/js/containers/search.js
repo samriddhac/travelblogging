@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ListItem from '../components/list-item';
-import { searchCity } from '../actions/index';
+import { searchCity, goToPlace } from '../actions/index';
 
 class Search extends Component {
 
@@ -26,7 +26,7 @@ class Search extends Component {
 
 	processChilds(city) {
 		return (
-			<ListItem key={city.id} {...city} />
+			<ListItem key={city.id} {...city} goToPlace={goToPlace} />
 		);
 	}
 
@@ -56,4 +56,4 @@ function mapStateToProps(state) {
 		cities:state.searchState.current
 	};
 }
-export default connect(mapStateToProps, {searchCity})(Search);
+export default connect(mapStateToProps, {searchCity, goToPlace})(Search);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 const zoom =15;
-export default class GoogleMap extends Component {
+class GoogleMap extends Component {
 
 	renderMap(pos) {
 		this.map = new google.maps.Map(this.refs.map, {
@@ -13,7 +14,7 @@ export default class GoogleMap extends Component {
 
 	componentDidMount() {
 		let centercoord = { lat: 0, lng: 0 };
-		if(!this.props.coord) {
+		if(!this.props.coord || (!this.props.coord.lat && !this.props.coord.lon)) {
 			if(navigator && navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition((position) => {
 					centercoord.lat = position.coords.latitude;
@@ -23,7 +24,10 @@ export default class GoogleMap extends Component {
 			}
 		}
 		else {
-			centercoord = this.props.coord;
+			centercoord = {
+				lat:this.props.coord.lat,
+				lng:this.props.coord.lon
+			};
 		}
 		this.renderMap(centercoord);
 	}
@@ -33,7 +37,13 @@ export default class GoogleMap extends Component {
 	}
 
 	componentWillReceiveProps() {
-		this.map.panTo();
+		console.log();
+		centercoord = {
+			lat:this.props.coord.lat,
+			lng:this.props.coord.lon
+		};
+		let latLng = new google.maps.LatLng(51.433373, -0.712251);
+		this.map.panTo(latLng);
 	}
 
 	render()  {
@@ -44,3 +54,11 @@ export default class GoogleMap extends Component {
 		);
 	}
 }
+
+function mapStateToProps(state) {
+	return {
+		coord:state.mapLocation
+	};
+}
+
+export default connect(mapStateToProps)(GoogleMap);

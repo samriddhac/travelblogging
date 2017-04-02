@@ -2,6 +2,10 @@ import React from 'react';
 
 export default (props) => {
 
+	const goToPlace = (e) => {
+		props.goToPlace(props.coord);
+	}
+
 	return (
 		<li className="list-group-item list-location-item rounded-border">
 		  	<div>
@@ -20,7 +24,8 @@ export default (props) => {
 		  				</div>
 		  			</div>
 		  			<div className="go-to-button pull-right">
-		  				<a className="btn btn-success btn-xs" href="">Go to this place</a>
+		  				<button className="btn btn-success btn-xs" onClick={goToPlace} 
+		  				>Go to this place</button>
 		  			</div>
 		  		</div>
 		  	</div>

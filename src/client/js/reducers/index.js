@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import Searchreduces from './search-reducer';
+import SearchReducer from './search-reducer';
 import GotoPlaceReducer from './gotoplace-reducer';
 
 const rootReducers =  combineReducers({
-	searchState: Searchreduces,
+	searchState: SearchReducer,
 	mapLocation: GotoPlaceReducer
 });
 

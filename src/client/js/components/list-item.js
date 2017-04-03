@@ -18,9 +18,9 @@ export default (props) => {
 		  			<div className="pull-inline weather-component">
 		  				<img src={`./images/icons/${props.icon}`}/>
 		  				<div>
-		  					<div className="light-italic-font font-size-small font-color-shady">Max temp: {props.maxTemp}</div>
-		  					<div className="light-italic-font font-size-small font-color-shady">Min temp: {props.minTemp}</div>
-		  					<div className="light-italic-font font-size-small font-color-shady">Humidity: {props.humidity}</div>
+		  					<div className="light-italic-font font-size-small font-color-shady">Max temp: {props.maxTemp}&deg;C</div>
+		  					<div className="light-italic-font font-size-small font-color-shady">Min temp: {props.minTemp}&deg;C</div>
+		  					<div className="light-italic-font font-size-small font-color-shady">Humidity: {props.humidity}%</div>
 		  				</div>
 		  			</div>
 		  			<div className="go-to-button pull-right">

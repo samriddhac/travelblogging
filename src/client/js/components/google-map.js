@@ -33,11 +33,19 @@ class GoogleMap extends Component {
 	}
 
 	shouldComponentUpdate() {
-		return false;
+		console.log('shouldComponentUpdate');
+		return true;
+	}
+	componentWillUpdate() {
+		console.log('componentWillUpdate');
+	}
+	componentDidUpdate() {
+		console.log('componentDidUpdate');
+		return true;
 	}
 
 	componentWillReceiveProps() {
-		console.log();
+		console.log('componentWillReceiveProps');
 		centercoord = {
 			lat:this.props.coord.lat,
 			lng:this.props.coord.lon

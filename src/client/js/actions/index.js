@@ -16,7 +16,6 @@ export function searchCity(term) {
 }
 
 export function goToPlace(coord) {
-	console.log('From action '+JSON.stringify(coord))
 	return {
 		type:GO_TO_PLACE,
 		payload:coord

@@ -26,7 +26,7 @@ class Search extends Component {
 
 	processChilds(city) {
 		return (
-			<ListItem key={city.id} {...city} goToPlace={goToPlace} />
+			<ListItem key={city.id} {...city} goToPlace={this.props.goToPlace} />
 		);
 	}
 
@@ -44,7 +44,7 @@ class Search extends Component {
 			  	</div>
 		  	</form>
 		    <ul className="list-group bg-dusky">
-			 	{this.props.cities.map(this.processChilds)}	
+			 	{this.props.cities.map(this.processChilds.bind(this))}	
 			</ul>
 		  </div>
 		);

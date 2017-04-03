@@ -25,7 +25,7 @@ export default (props) => {
 		  			</div>
 		  			<div className="go-to-button pull-right">
 		  				<button className="btn btn-success btn-xs" onClick={goToPlace} 
-		  				>Go to this place</button>
+		  				>Go to this place</button> 
 		  			</div>
 		  		</div>
 		  	</div>

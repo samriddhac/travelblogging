@@ -8,7 +8,7 @@ class GoogleMap extends Component {
 		this.map = new google.maps.Map(this.refs.map, {
 			zoom:zoom,
 			center: pos,
-			mapTypeId: 'satellite'
+			mapTypeId: google.maps.MapTypeId.HYBRID
 		});
 	}
 
@@ -33,25 +33,14 @@ class GoogleMap extends Component {
 	}
 
 	shouldComponentUpdate() {
-		console.log('shouldComponentUpdate');
-		return true;
+		return false;
 	}
-	componentWillUpdate() {
-		console.log('componentWillUpdate');
-	}
-	componentDidUpdate() {
-		console.log('componentDidUpdate');
-		return true;
-	}
-
-	componentWillReceiveProps() {
-		console.log('componentWillReceiveProps');
-		centercoord = {
-			lat:this.props.coord.lat,
-			lng:this.props.coord.lon
+	componentWillReceiveProps(newProps) {
+		let centercoord = {
+			lat:newProps.coord.lat,
+			lng:newProps.coord.lon
 		};
-		let latLng = new google.maps.LatLng(51.433373, -0.712251);
-		this.map.panTo(latLng);
+		this.map.panTo(centercoord);
 	}
 
 	render()  {
@@ -64,9 +53,8 @@ class GoogleMap extends Component {
 }
 
 function mapStateToProps(state) {
-	return {
-		coord:state.mapLocation
-	};
+	let newprop = {...state.mapLocation};
+	return newprop;
 }
 
 export default connect(mapStateToProps)(GoogleMap);

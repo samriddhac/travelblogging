@@ -1,5 +1,5 @@
-import {SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY} from '../actions/action-types';
-import {convertWeatherObject} from '../utils/utils';
+ import { SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY } from '../actions/action-types';
+import { convertWeatherObject } from '../utils/utils';
 
 const INITIAL_STATE = {
 	current: [],

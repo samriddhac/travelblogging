@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ListItem from '../components/list-item';
 import { searchCity, goToPlace } from '../actions/index';
+import { listitemconfig } from '../utils/configs';
 
 class Search extends Component {
 
@@ -43,8 +45,10 @@ class Search extends Component {
 			  		<button className="btn btn-default btn-md pull-right">Search</button>
 			  	</div>
 		  	</form>
-		    <ul className="list-group bg-dusky">
-			 	{this.props.cities.map(this.processChilds.bind(this))}	
+		    <ul className="list-group bg-dusky list-location-container">
+		    	<ReactCSSTransitionGroup {...listitemconfig}>
+			 		{this.props.cities.map(this.processChilds.bind(this))}	
+			 	</ReactCSSTransitionGroup>
 			</ul>
 		  </div>
 		);

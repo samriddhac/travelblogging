@@ -10,6 +10,14 @@ class GoogleMap extends Component {
 			center: pos,
 			mapTypeId: google.maps.MapTypeId.HYBRID
 		});
+		this.setMarker(pos);
+	}
+
+	setMarker(centercoord) {
+		this.marker = new google.maps.Marker({
+          position: centercoord,
+          map: this.map
+        });
 	}
 
 	componentDidMount() {

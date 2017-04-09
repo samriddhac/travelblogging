@@ -4,7 +4,7 @@ class FavouritesContainer extends Component {
 	render() {
 		return (
 			<div id="favs" className="tab-pane fade">
-		    <ul className="list-group bg-dusky">
+		    <ul className="list-group bg-dusky list-location-container">
 			  <li className="list-group-item list-location-item rounded-border">
 			  	<div>
 			  		<div>

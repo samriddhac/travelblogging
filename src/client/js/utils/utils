@@ -19,3 +19,17 @@ export function convertWeatherObject(obj) {
 	}
 }
 
+export function resetSelection(obj, objlist) {
+	objlist.forEach(function(o) {
+		if(o && o!==undefined && o!==null) {
+			if(o.id===obj.id) {
+				o.selected = true;
+			}
+			else {
+				o.selected = false;
+			}
+		}
+	});
+	return objlist;
+}
+

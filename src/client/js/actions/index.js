@@ -15,9 +15,12 @@ export function searchCity(term) {
 	};
 }
 
-export function goToPlace(coord) {
+export function goToPlace(id, coord) {
 	return {
 		type:GO_TO_PLACE,
-		payload:coord
+		payload: {
+			id,
+			coord
+		}
 	};
 }

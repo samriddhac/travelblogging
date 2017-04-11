@@ -29,20 +29,22 @@ class GoogleMap extends Component {
 	} 
 	onFoundAttraction(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
-			console.log('results '+JSON.stringify(results));
-			console.log('this '+this);
 			this.setAttractionmarkers(results);
 		}
 	}
 	setAttractionmarkers(locations) {
 		let bounds = new google.maps.LatLngBounds();
+		let infowindow = new google.maps.InfoWindow();
 		if(locations && locations!==null && locations.length>0) {
 			let locationMarkers = locations.map((loc) => {
 				let m = new google.maps.Marker({
-	            	position: loc.geometry.location,
-	            	label: loc.name
+	            	position: loc.geometry.location
 	          	});
 	          	bounds.extend(m.getPosition());
+	          	google.maps.event.addListener(m, 'click', function() {
+		          infowindow.setContent(loc.name);
+		          infowindow.open(this.map, this);
+		        });
 	          	return m;
 			});
 			this.map.fitBounds(bounds);

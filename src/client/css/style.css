@@ -112,6 +112,8 @@
 	margin: 5px 8px 5px 0px;
 	box-shadow: 10px 10px 5px #888888;
 	padding-bottom: 0px;
+}
+li.list-group-item {
 	transition: box-shadow 1s, background-color 1s;
 	transition-timing-function: ease-in-out;
 }

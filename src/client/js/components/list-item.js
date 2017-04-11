@@ -9,7 +9,7 @@ export default class ListItem extends Component {
 	}
 	goToPlace(e) {
 		this.setState({selected:true});
-		this.props.goToPlace(this.props.id, this.props.coord);
+		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
 	}
 	getCssClass() {
 		if(this.props.selected) {

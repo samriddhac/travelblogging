@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,SAVE_SEARCH_HISTORY,GO_TO_PLACE} from './action-types';
-import {WEATHER_ENDPOINT, GOOGLE_ENDPOINT} from './action-endpoints';
+import {WEATHER_ENDPOINT, googleConfig} from './action-endpoints';
 
 export function searchCity(term) {
 	let url = `${WEATHER_ENDPOINT}&q=${term}`;
@@ -15,11 +15,12 @@ export function searchCity(term) {
 	};
 }
 
-export function goToPlace(id, coord) {
+export function goToPlace(id, name, coord) {
 	return {
 		type:GO_TO_PLACE,
 		payload: {
 			id,
+			name,
 			coord
 		}
 	};

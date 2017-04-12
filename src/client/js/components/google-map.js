@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+
 
 const zoom =14;
 const pointOfInterest = '+point+of+interest';
@@ -10,6 +12,7 @@ class GoogleMap extends Component {
 		super(props);
 		this.onFoundAttraction = this.onFoundAttraction.bind(this);
 		this.setAttractionmarkers = this.setAttractionmarkers.bind(this);
+		this.renderInfoWindow = this.renderInfoWindow.bind(this);
 	}
 
 	renderMap(pos) {
@@ -33,6 +36,7 @@ class GoogleMap extends Component {
 		}
 	}
 	setAttractionmarkers(locations) {
+		let _this = this;
 		let bounds = new google.maps.LatLngBounds();
 		let infowindow = new google.maps.InfoWindow();
 		if(locations && locations!==null && locations.length>0) {
@@ -42,8 +46,10 @@ class GoogleMap extends Component {
 	          	});
 	          	bounds.extend(m.getPosition());
 	          	google.maps.event.addListener(m, 'click', function() {
-		          infowindow.setContent(loc.name);
-		          infowindow.open(this.map, this);
+	          		let infoDiv = document.createElement('div');
+	          		ReactDOM.render(_this.renderInfoWindow(loc), infoDiv);
+		          	infowindow.setContent(infoDiv);
+		          	infowindow.open(this.map, this);
 		        });
 	          	return m;
 			});
@@ -52,6 +58,7 @@ class GoogleMap extends Component {
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 		}
 	}
+	
 	setMarker(centercoord) {
 		this.marker = new google.maps.Marker({
           position: centercoord,
@@ -78,7 +85,23 @@ class GoogleMap extends Component {
 		}
 		this.renderMap(centercoord);
 	}
-
+	renderInfoWindow(place) {
+		let photoUrl = '';
+		if(place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
+			photoUrl = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
+		}
+		return(
+		<div>
+			<div><img src={photoUrl} /></div>
+			<div>
+				<div>Name : {place.name}</div>
+				<div><button className="btn btn-sm btn-success">images</button></div>
+				<div><button className="btn btn-sm btn-success">videos</button></div>
+				<div><button className="btn btn-sm btn-success">360&deg; view</button></div>
+			</div>
+		</div>
+		);
+	}
 	shouldComponentUpdate() {
 		return false;
 	}

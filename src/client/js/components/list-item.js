@@ -5,11 +5,15 @@ export default class ListItem extends Component {
 	constructor(props) {
 		super(props);
 		this.goToPlace = this.goToPlace.bind(this);
+		this.removeListItem = this.removeListItem.bind(this);
 		this.getCssClass = this.getCssClass.bind(this);
 	}
 	goToPlace(e) {
 		this.setState({selected:true});
 		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
+	}
+	removeListItem(e) {
+		this.props.removeListItem(this.props.id);
 	}
 	getCssClass() {
 		if(this.props.selected) {
@@ -23,6 +27,7 @@ export default class ListItem extends Component {
 		return (
 			<li className={this.getCssClass()}>
 			  	<div>
+			  		<span className="pull-right close-item" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
 			  		<div>
 			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">City : {this.props.cityName}</span>
 			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">Country : {this.props.countryName}</span>

@@ -1,4 +1,5 @@
- import { SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY, GO_TO_PLACE } from '../actions/action-types';
+import _ from 'lodash';
+import { SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY, GO_TO_PLACE, REMOVE_ITEM } from '../actions/action-types';
 import { convertWeatherObject,resetSelection } from '../utils/utils';
 
 const INITIAL_STATE = {
@@ -14,6 +15,12 @@ export default function (state=INITIAL_STATE, action) {
 
 		case SAVE_SEARCH_HISTORY:
 
+		case REMOVE_ITEM:
+			let id = action.payload;
+			let cdata = _.remove(state.current, {id});
+			let adata = _.remove(state.all, {id});
+			return {...state,current:[ ...cdata],
+				all:[...adata]};
 		case GO_TO_PLACE : 
 			let currentdata = resetSelection(action.payload, state.current);
 			let alldata = resetSelection(action.payload, state.all);

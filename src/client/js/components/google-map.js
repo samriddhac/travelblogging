@@ -88,18 +88,25 @@ class GoogleMap extends Component {
 	renderInfoWindow(place) {
 		let photoUrl = '';
 		if(place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
-			photoUrl = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100});
+			photoUrl = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 120});
 		}
 		return(
-		<div>
-			<div><img src={photoUrl} /></div>
-			<div>
-				<div>Name : {place.name}</div>
-				<div><button className="btn btn-sm btn-success">images</button></div>
-				<div><button className="btn btn-sm btn-success">videos</button></div>
-				<div><button className="btn btn-sm btn-success">360&deg; view</button></div>
+			<div className="info-window">
+				<div className="info-image-container">
+					<object data={photoUrl} type="image/png">
+						<img src="./images/icons/no-image.png" width="100" height="120" />
+					</object>
+				</div>	
+				<div className="info-data-container">
+					<div className="info-data-item bold-italic-font font-size-small font-color-blue">Name : {place.name}</div>
+					<div className="info-data-item bold-italic-font font-size-small font-color-blue">Address : {place.formatted_address}</div>
+					<div className="info-data-item">
+						<span className="info-button"><button className="btn btn-xs btn-success">images</button></span>
+						<span className="info-button"><button className="btn btn-xs btn-success">videos</button></span>
+						<span className="info-button"><button className="btn btn-xs btn-success">360&deg; view</button></span>
+					</div>
+				</div>
 			</div>
-		</div>
 		);
 	}
 	shouldComponentUpdate() {

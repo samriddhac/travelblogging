@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,SAVE_SEARCH_HISTORY,GO_TO_PLACE} from './action-types';
+import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,
+	SAVE_SEARCH_HISTORY,GO_TO_PLACE, REMOVE_ITEM} from './action-types';
 import {WEATHER_ENDPOINT, googleConfig} from './action-endpoints';
 
 export function searchCity(term) {
@@ -22,6 +23,15 @@ export function goToPlace(id, name, coord) {
 			id,
 			name,
 			coord
+		}
+	};
+}
+
+export function removeListItem(id) {
+	return {
+		type:REMOVE_ITEM,
+		payload: {
+			id
 		}
 	};
 }

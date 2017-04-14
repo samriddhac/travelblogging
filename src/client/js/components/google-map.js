@@ -79,6 +79,7 @@ class GoogleMap extends Component {
 	setMarker(centercoord) {
 		this.marker = new google.maps.Marker({
           position: centercoord,
+          animation: google.maps.Animation.DROP,
           map: this.map
         });
 	}

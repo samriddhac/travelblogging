@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 
-import CustomTooltip from './tooltip-wrapper';
-
 export default class ListItem extends Component {
 
 	constructor(props) {

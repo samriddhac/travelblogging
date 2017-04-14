@@ -16,9 +16,16 @@ export default function (state=INITIAL_STATE, action) {
 		case SAVE_SEARCH_HISTORY:
 
 		case REMOVE_ITEM:
-			let id = action.payload;
-			let cdata = _.remove(state.current, {id});
-			let adata = _.remove(state.all, {id});
+			let id = action.payload.id;
+			let selected = action.payload.selected;
+			let cdata = state.current;
+			_.remove(cdata, (item) => {
+				return item.id === id;
+			});
+			let adata = state.all;
+			_.remove(adata, (item) => {
+				return item.id === id;
+			});
 			return {...state,current:[ ...cdata],
 				all:[...adata]};
 		case GO_TO_PLACE : 

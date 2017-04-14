@@ -27,11 +27,12 @@ export function goToPlace(id, name, coord) {
 	};
 }
 
-export function removeListItem(id) {
+export function removeListItem(id, selected) {
 	return {
 		type:REMOVE_ITEM,
 		payload: {
-			id
+			id,
+			selected
 		}
 	};
 }

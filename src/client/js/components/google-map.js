@@ -113,16 +113,29 @@ class GoogleMap extends Component {
 		return false;
 	}
 	componentWillReceiveProps(newProps) {
-		if(newProps.coord) {
-			let centercoord = {
-				lat:newProps.coord.lat,
-				lng:newProps.coord.lon
-			};
-			this.map.panTo(centercoord);
-			this.setMarker(centercoord);
+		if(newProps.showDefault){
+			if(navigator && navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition((position) => {
+					let centercoord ={};
+					centercoord.lat = position.coords.latitude;
+					centercoord.lng = position.coords.longitude;
+					this.map.panTo(centercoord);
+					this.setMarker(centercoord);
+				});
+			}
 		}
-		if(newProps.name) {
-			this.searchPlaceAttactions(newProps.name);
+		else {
+			if(newProps.coord) {
+				let centercoord = {
+					lat:newProps.coord.lat,
+					lng:newProps.coord.lon
+				};
+				this.map.panTo(centercoord);
+				this.setMarker(centercoord);
+			}
+			if(newProps.name) {
+				this.searchPlaceAttactions(newProps.name);
+			}
 		}
 	}
 

@@ -1,4 +1,4 @@
-import {GO_TO_PLACE} from '../actions/action-types';
+import {GO_TO_PLACE, REMOVE_ITEM} from '../actions/action-types';
 
 const INITIAL_STATE = {};
 export default function (state=INITIAL_STATE, action) {
@@ -6,6 +6,11 @@ export default function (state=INITIAL_STATE, action) {
 		case GO_TO_PLACE : 
 			return {...state, coord:action.payload.coord, 
 				name:action.payload.name, id:action.payload.id};
+		case REMOVE_ITEM : 
+			if(action.payload.selected) {
+				return {...state, showDefault:true};
+			}
+			return state;
 		default:
 			return state;
 	}

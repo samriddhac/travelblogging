@@ -13,7 +13,7 @@ export default class ListItem extends Component {
 		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
 	}
 	removeListItem(e) {
-		this.props.removeListItem(this.props.id);
+		this.props.removeListItem(this.props.id, this.props.selected);
 	}
 	getCssClass() {
 		if(this.props.selected) {

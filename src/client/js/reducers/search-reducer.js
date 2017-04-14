@@ -16,24 +16,32 @@ export default function (state=INITIAL_STATE, action) {
 		case SAVE_SEARCH_HISTORY:
 
 		case REMOVE_ITEM:
-			let id = action.payload.id;
-			let selected = action.payload.selected;
-			let cdata = state.current;
-			_.remove(cdata, (item) => {
-				return item.id === id;
-			});
-			let adata = state.all;
-			_.remove(adata, (item) => {
-				return item.id === id;
-			});
-			return {...state,current:[ ...cdata],
-				all:[...adata]};
+			return getRemoveItemState(state, action);
 		case GO_TO_PLACE : 
-			let currentdata = resetSelection(action.payload, state.current);
-			let alldata = resetSelection(action.payload, state.all);
-			return {...state,current:[ ...currentdata],
-				all:[...alldata]};
+			return getGoToPlaceObjState(state, action);
 		default:
 			return state;
 	}
+}
+
+function getGoToPlaceObjState(state, action) {
+	let currentdata = resetSelection(action.payload, state.current);
+	let alldata = resetSelection(action.payload, state.all);
+	return {...state,current:[ ...currentdata],
+		all:[...alldata]};
+}
+
+function getRemoveItemState(state, action) {
+	let id = action.payload.id;
+	let selected = action.payload.selected;
+	let cdata = state.current;
+	_.remove(cdata, (item) => {
+		return item.id === id;
+	});
+	let adata = state.all;
+	_.remove(adata, (item) => {
+		return item.id === id;
+	});
+	return {...state,current:[ ...cdata],
+		all:[...adata]};
 }

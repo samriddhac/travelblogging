@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+
+import CustomTooltip from './tooltip-wrapper';
 
 export default class ListItem extends Component {
 
@@ -24,10 +27,14 @@ export default class ListItem extends Component {
 		}
 	}
 	render(){
+		let closeTooltip = <Tooltip id={`${this.props.id}_close`}>Remove</Tooltip>;
+		let weatherTooltip = <Tooltip id={this.props.id}>{this.props.description}</Tooltip>;
 		return (
 			<li className={this.getCssClass()}>
 			  	<div>
-			  		<span className="pull-right close-item" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
+			  		<OverlayTrigger overlay={closeTooltip} placement="top"delayShow={300} delayHide={150}>
+			  			<span className="pull-right close-item" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
+			  		</OverlayTrigger>
 			  		<div>
 			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">City : {this.props.cityName}</span>
 			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">Country : {this.props.countryName}</span>
@@ -35,7 +42,9 @@ export default class ListItem extends Component {
 			  		</div>
 			  		<div className="list-item-weather-container">
 			  			<div className="pull-inline weather-component">
-			  				<img src={`./images/icons/${this.props.icon}`}/>
+			  				<OverlayTrigger overlay={weatherTooltip} placement="top"delayShow={300} delayHide={150}>
+			  					<img src={`./images/icons/${this.props.icon}`}/>
+			  				</OverlayTrigger>
 			  				<div>
 			  					<div className="light-italic-font font-size-small font-color-shady">Max temp: {this.props.maxTemp}&deg;C</div>
 			  					<div className="light-italic-font font-size-small font-color-shady">Min temp: {this.props.minTemp}&deg;C</div>

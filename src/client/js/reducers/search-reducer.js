@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY, GO_TO_PLACE, REMOVE_ITEM } from '../actions/action-types';
-import { convertWeatherObject,resetSelection } from '../utils/utils';
+import { convertWeatherObject,resetSelection } from '../utils/utilities';
 
 const INITIAL_STATE = {
 	current: [],

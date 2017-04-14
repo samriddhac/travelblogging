@@ -24,7 +24,10 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "coordinate-tz": "^0.1.2",
+    "fs": "0.0.1-security",
     "history": "^4.6.1",
+    "jspack": "0.0.4",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.5.2",
@@ -35,6 +38,8 @@
     "react-router-dom": "^4.0.0",
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "youtube-api-search": "0.0.5",
+    "zoneinfo": "^0.1.8"
   }
 }

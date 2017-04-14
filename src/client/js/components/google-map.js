@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 
+import { switchToMedia } from '../actions/index';
+import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
 
 const zoom =14;
 const pointOfInterest = '+point+of+interest';
@@ -13,6 +15,9 @@ class GoogleMap extends Component {
 		this.onFoundAttraction = this.onFoundAttraction.bind(this);
 		this.setAttractionmarkers = this.setAttractionmarkers.bind(this);
 		this.renderInfoWindow = this.renderInfoWindow.bind(this);
+		this.showImage = this.showImage.bind(this);
+		this.showVideo = this.showVideo.bind(this);
+		this.show360 = this.show360.bind(this);
 	}
 
 	renderMap(pos) {
@@ -34,6 +39,18 @@ class GoogleMap extends Component {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
 			this.setAttractionmarkers(results);
 		}
+	}
+	showImage(e) {
+		const placeName = e.target.getAttribute('data-place');
+		this.props.switchToMedia(true, TYPE_IMAGE, placeName);
+	}
+	showVideo(e) {
+		const placeName = e.target.getAttribute('data-place');
+		this.props.switchToMedia(true, TYPE_VIDEO, placeName);
+	}
+	show360(e) {
+		const placeName = e.target.getAttribute('data-place');
+		this.props.switchToMedia(true, TYPE_360, placeName);
 	}
 	setAttractionmarkers(locations) {
 		let _this = this;
@@ -86,14 +103,14 @@ class GoogleMap extends Component {
 		this.renderMap(centercoord);
 	}
 	renderInfoWindow(place) {
-		let photoUrl = '';
-		if(place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
+		let photoUrl = './images/icons/no-image.png';
+		if(place.photos && place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
 			photoUrl = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 120});
 		}
 		return(
 			<div className="info-window">
 				<div className="info-image-container">
-					<object data={photoUrl} type="image/png">
+					<object data={photoUrl} type="image/png" width="100" height="120">
 						<img src="./images/icons/no-image.png" width="100" height="120" />
 					</object>
 				</div>	
@@ -101,9 +118,9 @@ class GoogleMap extends Component {
 					<div className="info-data-item bold-italic-font font-size-small font-color-blue">Name : {place.name}</div>
 					<div className="info-data-item bold-italic-font font-size-small font-color-blue">Address : {place.formatted_address}</div>
 					<div className="info-data-item">
-						<span className="info-button"><button className="btn btn-xs btn-success">images</button></span>
-						<span className="info-button"><button className="btn btn-xs btn-success">videos</button></span>
-						<span className="info-button"><button className="btn btn-xs btn-success">360&deg; view</button></span>
+						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.showImage}>images</button></span>
+						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.showVideo}>videos</button></span>
+						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.show360}>360&deg; view</button></span>
 					</div>
 				</div>
 			</div>
@@ -153,4 +170,4 @@ function mapStateToProps(state) {
 	return newprop;
 }
 
-export default connect(mapStateToProps)(GoogleMap);
+export default connect(mapStateToProps, {switchToMedia})(GoogleMap);

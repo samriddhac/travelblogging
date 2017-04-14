@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Header from './header';
 import GoogleMap from './google-map';
 import NavContainer from './left-nav-container';
+import MediaContainer from '../containers/media-container';
 
 export default (props) => {
 	return (
@@ -14,9 +15,7 @@ export default (props) => {
 					<GoogleMap />
 				</div>
 			</div>
-			<div className="container media-container">
-
-			</div>
+			<MediaContainer />
 		</div>
 	);
 }

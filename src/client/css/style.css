@@ -266,10 +266,15 @@
 	position: relative;
 	top:-10px;
 	left:8px;
-	font-size: 1.5em;
 	opacity: 0.5;
 	transition: opacity 0.5s;
 	transition-timing-function: ease-in;
+}
+.close-item-sm {
+	font-size: 1.5em;
+}
+.close-item-lg {
+	font-size: 2.5em;
 }
 .close-item:hover {
 	opacity: 1.0;

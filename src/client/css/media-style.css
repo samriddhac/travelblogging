@@ -1,5 +1,16 @@
 .media-container {
-  
+  display: none;
+  background: rgb(255,255,255);
+  background: -moz-linear-gradient(top, rgba(255,255,255,1) 0%, rgba(237,237,237,1) 51%, rgba(243,243,243,1) 68%, rgba(243,243,243,1) 68%, rgba(255,255,255,1) 100%);
+  background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(237,237,237,1) 51%,rgba(243,243,243,1) 68%,rgba(243,243,243,1) 68%,rgba(255,255,255,1) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,1) 0%,rgba(237,237,237,1) 51%,rgba(243,243,243,1) 68%,rgba(243,243,243,1) 68%,rgba(255,255,255,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+  opacity: 0.7;
+  margin: 0px;
+  padding: 10%;
+  z-index: 10;
+  width: 100%;
+  min-height: 100px;
 }
 
 /* ----------- HTC One ----------- */

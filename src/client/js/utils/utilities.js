@@ -1,3 +1,5 @@
+
+
 import countries from '../data/country.json';
 import weathericon from '../data/weather-icons.json';
 
@@ -12,7 +14,7 @@ export function convertWeatherObject(obj) {
 			maxTemp:obj.main.temp_max,
 			minTemp:obj.main.temp_min,
 			humidity:obj.main.humidity,
-			localTime:'12:00:00AM',
+			localTime:'08:00:00AM',
 			icon:weathericon[obj.weather[0].id],
 			description:obj.weather[0].description
 		};

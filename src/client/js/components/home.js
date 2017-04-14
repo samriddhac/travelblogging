@@ -14,6 +14,9 @@ export default (props) => {
 					<GoogleMap />
 				</div>
 			</div>
+			<div className="container media-container">
+
+			</div>
 		</div>
 	);
 }

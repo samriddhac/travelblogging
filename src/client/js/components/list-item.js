@@ -31,7 +31,7 @@ export default class ListItem extends Component {
 			<li className={this.getCssClass()}>
 			  	<div>
 			  		<OverlayTrigger overlay={closeTooltip} placement="top"delayShow={300} delayHide={150}>
-			  			<span className="pull-right close-item close-item-sm" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
+			  			<span className="pull-right close-item close-item-sm close-item-w-list" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
 			  		</OverlayTrigger>
 			  		<div>
 			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">City : {this.props.cityName}</span>

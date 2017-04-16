@@ -1,23 +1,18 @@
 @keyframes anime-opacity {
   0% {
     opacity: 0.0;
-    top:-200px;
   }
   25% {
     opacity: 0.2;
-    top:-150px;
   }
   50% {
     opacity: 0.4;
-    top:-100px;
   }
   75% {
     opacity: 0.6;
-    top:-50px;
   }
-  100% {
+  50% {
     opacity: 0.8;
-    top:0;
   }
 }
 .media-container {
@@ -30,17 +25,14 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.8;
 }
 .m-light {
   background-color: #fff;
-  animation: anime-opacity 1s;
-  animation-timing-function: linear;
+  animation: anime-opacity 2s;
 }
 .m-dark {
   background-color: #000;
-  animation: anime-opacity 1s;
-  animation-timing-function: linear;
+  animation: anime-opacity 2s;
 }
 /* ----------- HTC One ----------- */
 

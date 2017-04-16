@@ -3,6 +3,7 @@ import YTSearch from 'youtube-api-search';
 import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,
 	SAVE_SEARCH_HISTORY,GO_TO_PLACE, REMOVE_ITEM, SWITCH_TO_MEDIA} from './action-types';
 import {WEATHER_ENDPOINT, GOOGLE_API_KEY} from './action-endpoints';
+import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
 
 export function searchCity(term) {
 	let url = `${WEATHER_ENDPOINT}&q=${term}`;
@@ -39,19 +40,42 @@ export function removeListItem(id, selected) {
 }
 
 export function switchToMedia(value, type, name) {
-
-	return (dispatch)=> {
-		YTSearch({key:GOOGLE_API_KEY, term: name}, (videos) => {
-			let firstMedia = videos[0];
-			dispatch({
-				type:SWITCH_TO_MEDIA,
-				payload: {
-					show:value,
-					name,
-					mediaList:videos,
-					activeMedia:firstMedia
-				}
+	if(type === TYPE_VIDEO) {
+		return (dispatch)=> {
+			YTSearch({key:GOOGLE_API_KEY, term: name}, (videos) => {
+				let firstMedia = videos[0];
+				dispatch({
+					type:SWITCH_TO_MEDIA,
+					payload: {
+						show:value,
+						name,
+						mediaList:videos,
+						activeMedia:firstMedia
+					}
+				});
 			});
-		});
-	};
+		};
+	}
+	else if(type === TYPE_360) {
+		return {
+			type:SWITCH_TO_MEDIA,
+			payload: {
+				show:value,
+				name,
+				mediaList:[],
+				activeMedia:{}
+			}
+		};
+	}
+	else {
+		return {
+			type:SWITCH_TO_MEDIA,
+			payload: {
+				show:value,
+				name,
+				mediaList:[],
+				activeMedia:{}
+			}
+		};
+	}
 }

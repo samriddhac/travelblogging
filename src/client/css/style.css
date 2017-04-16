@@ -267,8 +267,6 @@ html, body {
 .close-item {
 	cursor: pointer;
 	position: relative;
-	top:-10px;
-	left:8px;
 	opacity: 0.5;
 	transition: opacity 0.5s;
 	transition-timing-function: ease-in;
@@ -281,4 +279,25 @@ html, body {
 }
 .close-item:hover {
 	opacity: 1.0;
+}
+.home-container {
+	height: 100%;
+}
+.media-bg-btn {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	right: 0;
+	padding-right: 5px;
+}
+.media-bg-btn-item {
+	padding-right: 5px;
+}
+.close-item-w-list {
+	top:-10px;
+	left:8px;
+}
+.close-item-m-list {
+	top:-16px;
+	left:8px;
 }

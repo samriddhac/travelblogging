@@ -49,6 +49,7 @@ export function switchToMedia(value, type, name) {
 					payload: {
 						show:value,
 						name,
+						type,
 						mediaList:videos,
 						activeMedia:firstMedia
 					}
@@ -62,6 +63,7 @@ export function switchToMedia(value, type, name) {
 			payload: {
 				show:value,
 				name,
+				type,
 				mediaList:[],
 				activeMedia:{}
 			}
@@ -73,6 +75,7 @@ export function switchToMedia(value, type, name) {
 			payload: {
 				show:value,
 				name,
+				type,
 				mediaList:[],
 				activeMedia:{}
 			}

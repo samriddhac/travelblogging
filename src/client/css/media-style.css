@@ -4,19 +4,19 @@
     top:-200px;
   }
   25% {
-    opacity: 0.2;
+    opacity: 0.25;
     top:-150px;
   }
   50% {
-    opacity: 0.4;
+    opacity: 0.5;
     top:-100px;
   }
   75% {
-    opacity: 0.6;
+    opacity: 0.75;
     top:-50px;
   }
   100% {
-    opacity: 0.8;
+    opacity: 1.0;
     top:0;
   }
 }
@@ -30,7 +30,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.8;
+  opacity: 1.0;
 }
 .m-light {
   background-color: #fff;

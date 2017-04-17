@@ -54,9 +54,7 @@ class MediaContainer extends Component {
 					<span className="media-bg-btn-item"><button className="btn btn-success btn-xs" onClick={this.setCss}>{this.state.displayText}</button></span>
 					<span className="close-item close-item-lg media-bg-btn-item close-item-m-list" aria-hidden="true" onClick={this.close}>&times;</span>
 				</div>
-				<div className="carousel-container">
-					<Carousel3d mediaList={mediaList} type={type} name={name} width="500" height="460" />
-				</div>
+				<Carousel3d mediaList={mediaList} type={type} name={name} width="504" height="254" />
 			</div>
 		);
 	}

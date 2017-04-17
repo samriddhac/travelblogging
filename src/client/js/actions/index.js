@@ -42,7 +42,7 @@ export function removeListItem(id, selected) {
 export function switchToMedia(value, type, name) {
 	if(type === TYPE_VIDEO) {
 		return (dispatch)=> {
-			YTSearch({key:GOOGLE_API_KEY, term: name}, (videos) => {
+			YTSearch({key:GOOGLE_API_KEY, term: name, maxResult:10}, (videos) => {
 				let firstMedia = videos[0];
 				dispatch({
 					type:SWITCH_TO_MEDIA,

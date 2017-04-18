@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { switchToMedia } from '../actions/index';
 import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
+import Nav3d from './nav3d';
+import googleOptions from '../data/gmap-options.json';
 
 const zoom =14;
 const pointOfInterest = '+point+of+interest';
@@ -18,6 +20,10 @@ class GoogleMap extends Component {
 		this.showImage = this.showImage.bind(this);
 		this.showVideo = this.showVideo.bind(this);
 		this.show360 = this.show360.bind(this);
+	}
+
+	componentWillMount() {
+		this.populateMapOptions();
 	}
 
 	renderMap(pos) {
@@ -103,6 +109,10 @@ class GoogleMap extends Component {
 		}
 		this.renderMap(centercoord);
 	}
+	populateMapOptions() {
+		console.log(googleOptions);
+		this.optionList = googleOptions;
+	}
 	renderInfoWindow(place) {
 		let photoUrl = './images/icons/no-image.png';
 		if(place.photos && place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
@@ -158,9 +168,11 @@ class GoogleMap extends Component {
 	}
 
 	render()  {
+		console.log(this.optionList);
 		return (
 			<div className="col-md-8 bg-dusky">
 				<div id="map" className="full-page-height" ref="map"></div>
+				<Nav3d width="42" height="42" mediaList={this.optionList} />
 			</div>
 		);
 	}

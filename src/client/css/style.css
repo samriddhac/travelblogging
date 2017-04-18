@@ -347,3 +347,59 @@ html, body {
     -webkit-box-reflect: below 5px
     -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 50%, transparent 100%);
 }
+.nav3d-container {
+	width: 84px;
+    height: 84px;
+    margin-bottom: 169%;
+    margin-top: 169%;
+    position: relative;
+    -webkit-perspective: 1100px;
+    -moz-perspective: 1100px;
+    -o-perspective: 1100px;
+    perspective: 1100px;
+}
+.nav3d {
+	width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    transition: transform 1s ease-in;
+}
+.nav3d figure {
+	display: block;
+    position: absolute;
+    width: 84px;
+    height: 84px;
+    text-align: center;
+}
+.nav-container {
+	display: none;
+	flex-direction: column;
+	background-color: #000;
+	opacity: 0.7;
+	width: 100px;
+	height: 540px;
+	padding: 4px 8px;
+	border-radius: 10px;
+}
+.nav-up, .nav-down {
+	width:84px;
+	padding: 10px 10px;
+	height: 64px;
+	margin-bottom: 16px;
+	cursor: pointer;
+}
+.nav-up, .nav-down:hover {
+	opacity: 1.2;
+}
+.n3c {
+	width: 84px;
+	height:400px;
+	overflow: hidden;
+}
+.goption-box {
+	margin:5px;
+}

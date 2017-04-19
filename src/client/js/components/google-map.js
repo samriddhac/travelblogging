@@ -172,7 +172,7 @@ class GoogleMap extends Component {
 		return (
 			<div className="col-md-8 bg-dusky">
 				<div id="map" className="full-page-height" ref="map"></div>
-				<Nav3d width="42" height="42" mediaList={this.optionList} />
+				<Nav3d width="64" height="80" mediaList={this.optionList} />
 			</div>
 		);
 	}

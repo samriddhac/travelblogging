@@ -177,13 +177,14 @@ html, body {
 	border-radius: 10px !important;
 }
 .bold-italic-font {
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	font-style: italic;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 	font-weight: bold;
 }
 .light-italic-font {
-	font-family: "Comic Sans MS", cursive, sans-serif;
-	font-style: italic;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+.font-normal {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 .font-color-blue {
 	color: blue;
@@ -199,6 +200,9 @@ html, body {
 }
 .font-size-small {
 	font-size: 12px;
+}
+.font-size-xm {
+	font-size: 10px;
 }
 ::-webkit-scrollbar {
     width: 8px;
@@ -348,8 +352,8 @@ html, body {
     -webkit-linear-gradient(bottom, rgba(255, 255, 255, 0.3) 0%, transparent 50%, transparent 100%);
 }
 .nav3d-container {
-	width: 84px;
-    height: 84px;
+	width: 64px;
+    height: 64px;
     margin-bottom: 169%;
     margin-top: 169%;
     position: relative;
@@ -371,35 +375,51 @@ html, body {
 .nav3d figure {
 	display: block;
     position: absolute;
-    width: 84px;
-    height: 84px;
+    width: 48px;
+    height: auto;
     text-align: center;
+    cursor: pointer;
 }
 .nav-container {
-	display: none;
+	display: flex;
 	flex-direction: column;
 	background-color: #000;
-	opacity: 0.7;
-	width: 100px;
-	height: 540px;
-	padding: 4px 8px;
 	border-radius: 10px;
+	position: absolute;
+	right: 0;
 }
 .nav-up, .nav-down {
-	width:84px;
-	padding: 10px 10px;
-	height: 64px;
-	margin-bottom: 16px;
+	width:42px;
+	height: 42px;
+	margin: 8px auto;
 	cursor: pointer;
 }
-.nav-up, .nav-down:hover {
-	opacity: 1.2;
-}
 .n3c {
-	width: 84px;
-	height:400px;
+	width: 64px;
+	border-radius: 20px;
+	height:auto;
 	overflow: hidden;
 }
 .goption-box {
+	display: flex;
+	flex-direction: column;
 	margin:5px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	border-radius: 10px;
+	background: rgba(255,255,255,1);
+	background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,0.99) 100%);
+	background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,0.99)));
+	background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,0.99) 100%);
+	background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,0.99) 100%);
+	background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,0.99) 100%);
+	background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,0.99) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+	text-transform: capitalize;
+	opacity: 0.8;
+	transition: opacity 1s ease-in-out;
+}
+.goption-box:hover {
+	opacity: 1.0;
+	transform: rotateZ(7deg);
 }

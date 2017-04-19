@@ -29,21 +29,21 @@ export default class Nav3d extends Component {
 	}
 
 	createDataProps() {
-		this.panelSize = this.width;
+		this.panelSize = this.height;
 		this.rotateFn = 'rotateX';
 		this.theta = 360/this.panelCount;
 		this.radius = Math.round((this.panelSize/2)/Math.tan(Math.PI/this.panelCount));
 		this.frameWidth = `${this.width}px`;
-		this.frameHeight = `${this.height}px`;
+		this.frameHeight = `${this.height-10}px`;
 		let angle = 0;
 		this.dataProps = [];
 		this.mediaList.map((data, index)=>{
 			angle = this.theta * index;
 			let style = {
-				transform: `${this.rotateFn}(${angle}deg) translateZ(${this.radius}px)`,
-				backgroundColor:`hsla(${angle} , 100%, 50%, 0.8)`
+				transform: `${this.rotateFn}(${angle}deg) translateZ(${this.radius}px)`
 			}
-			this.dataProps = [...this.dataProps, { url:data.url, icon:data.icon, style:style}];
+			this.dataProps = [...this.dataProps, { url:data.url, icon:data.icon, 
+				name:data.name, style:style}];
 		});
 		this.rotation = Math.round(this.rotation/this.theta) * this.theta;
 		this.setCarouselRotationStyle();
@@ -59,8 +59,9 @@ export default class Nav3d extends Component {
 
 	getChildren(dataprop) {
 		return (
-			<figure className="goption-box" style={dataprop.style}>
-				<img src={dataprop.icon} width={this.width} height={this.height}/>
+			<figure className="goption-box font-normal font-size-xm" style={dataprop.style}>
+				<img src={dataprop.icon} width="42px" height="42px"/>
+				<span>{dataprop.name}</span>
 			</figure>
 		);
 	}
@@ -76,7 +77,7 @@ export default class Nav3d extends Component {
 		return(
 			<div className="nav-container">
 				<div className="nav-up">
-					<img src="./images/icons/up.png" width="60" height="60" onClick={this.prev.bind(this)}/>
+					<img src="./images/icons/up.ico" width="42" height="42" onClick={this.prev.bind(this)}/>
 				</div>
 				<div className="n3c">
 					<div className="nav3d-container">
@@ -86,7 +87,7 @@ export default class Nav3d extends Component {
 					</div>
 				</div>
 				<div className="nav-down">
-					<img src="./images/icons/down.png" width="60" height="60" onClick={this.next.bind(this)}/>
+					<img src="./images/icons/down.ico" width="42" height="42" onClick={this.next.bind(this)}/>
 				</div>
 			</div>
 		);

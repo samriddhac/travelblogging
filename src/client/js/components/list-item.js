@@ -34,8 +34,8 @@ export default class ListItem extends Component {
 			  			<span className="pull-right close-item close-item-sm close-item-w-list" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
 			  		</OverlayTrigger>
 			  		<div>
-			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">City : {this.props.cityName}</span>
-			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">Country : {this.props.countryName}</span>
+			  			<span className="bold-italic-font font-size-small list-location-child-item">City : {this.props.cityName}</span>
+			  			<span className="bold-italic-font font-size-small list-location-child-item">Country : {this.props.countryName}</span>
 			  			<span className="light-italic-font font-size-small font-color-shady list-location-child-item pull-right">{this.props.localTime}</span>
 			  		</div>
 			  		<div className="list-item-weather-container">

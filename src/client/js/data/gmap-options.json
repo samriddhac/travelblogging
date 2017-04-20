@@ -1,62 +1,77 @@
 [
 	{
-		"name":"hotel",
-		"icon":"./images/icons/hotel.jpg"
+		"name":"hotels",
+		"icon":"./images/icons/hotel.jpg",
+		"hotels-icon":"./images/icons/google-map/hotels.png"
 	},
 	{
 		"name":"airport",
-		"icon":"./images/icons/airport.jpg"
+		"icon":"./images/icons/airport.jpg",
+		"airport-icon":"./images/icons/google-map/airport.png"
 	},
 	{
 		"name":"supermarket",
-		"icon":"./images/icons/supermarket.jpg"
+		"icon":"./images/icons/supermarket.jpg",
+		"supermarket-icon":"./images/icons/google-map/supermarket.png"
 	},
 	{
-		"name":"resturant",
-		"icon":"./images/icons/restaurant.png"
+		"name":"restaurants",
+		"icon":"./images/icons/restaurant.png",
+		"restaurants-icon":"./images/icons/google-map/restaurants.png"
 	},
 	{
 		"name":"bank",
-		"icon":"./images/icons/bank.png"
+		"icon":"./images/icons/bank.png",
+		"bank-icon":"./images/icons/google-map/bank.png"
 	},
 	{
 		"name":"beach",
-		"icon":"./images/icons/beach.jpg"
+		"icon":"./images/icons/beach.jpg",
+		"beach-icon":"./images/icons/google-map/beach.png"
 	},
 	{
 		"name":"casino",
-		"icon":"./images/icons/casino.png"
+		"icon":"./images/icons/casino.png",
+		"casino-icon":"./images/icons/google-map/casino.png"
 	},
 	{
-		"name":"doctor",
-		"icon":"./images/icons/doctor.jpg"
+		"name":"doctors",
+		"icon":"./images/icons/doctor.jpg",
+		"doctors-icon":"./images/icons/google-map/doctors.png"
 	},
 	{
-		"name":"movie",
-		"icon":"./images/icons/movie.jpg"
+		"name":"movies",
+		"icon":"./images/icons/movie.jpg",
+		"movies-icon":"./images/icons/google-map/movies.png"
 	},
 	{
-		"name":"musueum",
-		"icon":"./images/icons/musueum.jpg"
+		"name":"museums",
+		"icon":"./images/icons/musueum.jpg",
+		"museums-icon":"./images/icons/google-map/museums.png"
 	},
 	{
 		"name":"police",
-		"icon":"./images/icons/police.jpg"
+		"icon":"./images/icons/police.jpg",
+		"police-icon":"./images/icons/google-map/police.png"
 	},
 	{
 		"name":"shopping",
-		"icon":"./images/icons/shopping.jpg"
+		"icon":"./images/icons/shopping.jpg",
+		"shopping-icon":"./images/icons/google-map/shopping.png"
 	},
 	{
 		"name":"wine",
-		"icon":"./images/icons/wine.png"
+		"icon":"./images/icons/wine.png",
+		"wine-icon":"./images/icons/google-map/wine.png"
 	},
 	{
 		"name":"zoo",
-		"icon":"./images/icons/zoo.jpg"
+		"icon":"./images/icons/zoo.jpg",
+		"zoo-icon":"./images/icons/google-map/zoo.png"
 	},
 	{
 		"name":"taxi",
-		"icon":"./images/icons/taxi.jpg"
+		"icon":"./images/icons/taxi.jpg",
+		"taxi-icon":"./images/icons/google-map/taxi.png"
 	}
 ]

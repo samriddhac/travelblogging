@@ -7,6 +7,7 @@ export default class Nav3d extends Component {
 		this.state = {
 			rotationStyle:''
 		};
+		this.onItemClick = this.onItemClick.bind(this);
 	}
 	componentWillMount() {
 		this.rotation =0;
@@ -56,12 +57,16 @@ export default class Nav3d extends Component {
 			}
 		});
 	}
-
+	onItemClick(e) {
+		const placeproperty = e.target.getAttribute('data-place-type');
+		this.props.onOptionClick(placeproperty);
+	}
 	getChildren(dataprop) {
 		return (
-			<figure className="goption-box font-normal font-size-xm" style={dataprop.style}>
-				<img src={dataprop.icon} width="42px" height="42px"/>
-				<span>{dataprop.name}</span>
+			<figure className="goption-box font-normal font-size-xm" 
+			style={dataprop.style} onClick={this.onItemClick}>
+				<img src={dataprop.icon} width="42px" height="42px" data-place-type={dataprop.name}/>
+				<span data-place-type={dataprop.name}>{dataprop.name}</span>
 			</figure>
 		);
 	}

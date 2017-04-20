@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { switchToMedia } from '../actions/index';
 import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
@@ -20,26 +21,38 @@ class GoogleMap extends Component {
 		this.showImage = this.showImage.bind(this);
 		this.showVideo = this.showVideo.bind(this);
 		this.show360 = this.show360.bind(this);
+		this.onOptionClick = this.onOptionClick.bind(this);
 	}
 
 	componentWillMount() {
 		this.populateMapOptions();
 	}
 
-	renderMap(pos) {
+	renderMap() {
 		this.map = new google.maps.Map(this.refs.map, {
 			zoom:zoom,
-			center: pos,
+			center: this.centercoord,
 			mapTypeId: google.maps.MapTypeId.HYBRID
 		});
 		this.placeService = new google.maps.places.PlacesService(this.map);
-		this.setMarker(pos);
+		this.setMarker();
 	}
-	searchPlaceAttactions(name) {
-		let request = {
-			query:`${name}${pointOfInterest}`
+	searchPlaceAttactions(name, type) {
+		let request = null;
+		if(name) {
+			request = {
+				query:`${name}${pointOfInterest}`
+			};
+			this.placeService.textSearch(request, this.onFoundAttraction);
 		}
-		this.placeService.textSearch(request, this.onFoundAttraction);
+		else if(type){
+			request = {
+				location: this.centercoord,
+			    query: type
+			};
+			this.currentype = type;
+			this.placeService.textSearch(request, this.onFoundAttraction);
+		}
 	} 
 	onFoundAttraction(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -58,14 +71,26 @@ class GoogleMap extends Component {
 		const placeName = e.target.getAttribute('data-place');
 		this.props.switchToMedia(true, TYPE_360, placeName);
 	}
+	onOptionClick(type) {
+		this.searchPlaceAttactions(null, type);
+	}
 	setAttractionmarkers(locations) {
 		let _this = this;
+		this.locationMarkers =[];
+		this.resetMarkers();
 		let bounds = new google.maps.LatLngBounds();
 		let infowindow = new google.maps.InfoWindow();
 		if(locations && locations!==null && locations.length>0) {
-			let locationMarkers = locations.map((loc) => {
+			locations.map((loc) => {
+				let iconpath = './images/icons/google-map/places.png';
+				if(this.currentype && this.currentype!==null && this.currentype!==''){
+					let objG = _.find(googleOptions, {name:this.currentype});
+					iconpath = objG[`${this.currentype}-icon`];
+				}
 				let m = new google.maps.Marker({
-	            	position: loc.geometry.location
+	            	position: loc.geometry.location,
+	            	title:loc.name,
+	            	icon:iconpath
 	          	});
 	          	bounds.extend(m.getPosition());
 	          	google.maps.event.addListener(m, 'click', function() {
@@ -74,45 +99,56 @@ class GoogleMap extends Component {
 		          	infowindow.setContent(infoDiv);
 		          	infowindow.open(this.map, this);
 		        });
-	          	return m;
+	          	this.locationMarkers = [...this.locationMarkers, m];
 			});
 			this.map.fitBounds(bounds);
-			this.markerCluster = new MarkerClusterer(this.map, locationMarkers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+			this.markerCluster = new MarkerClusterer(
+				this.map, 
+				this.locationMarkers,
+				{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
+				);
 		}
 	}
-	
-	setMarker(centercoord) {
+	resetMarkers() {
+		if(this.locationMarkers) {
+			this.locationMarkers.map((m) => {
+				m.setMap(null);
+			});
+			this.locationMarkers = [];
+		}
+	}
+	setMarker() {
 		this.marker = new google.maps.Marker({
-          position: centercoord,
+          position: this.centercoord,
           animation: google.maps.Animation.DROP,
+          icon:'./images/icons/google-map/default.png',
           map: this.map
         });
 	}
 
 	componentDidMount() {
-		let centercoord = { lat: 0, lng: 0 };
+		this.centercoord = { lat: 0, lng: 0 };
 		if(!this.props.coord || (!this.props.coord.lat && !this.props.coord.lon)) {
 			if(navigator && navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition((position) => {
-					centercoord.lat = position.coords.latitude;
-					centercoord.lng = position.coords.longitude;
-					this.renderMap(centercoord);
+					this.centercoord.lat = position.coords.latitude;
+					this.centercoord.lng = position.coords.longitude;
+					this.renderMap();
 				});
 			}
 		}
 		else {
-			centercoord = {
+			this.centercoord = {
 				lat:this.props.coord.lat,
 				lng:this.props.coord.lon
 			};
 		}
-		this.renderMap(centercoord);
+		this.renderMap();
 	}
 	populateMapOptions() {
-		console.log(googleOptions);
 		this.optionList = googleOptions;
 	}
+
 	renderInfoWindow(place) {
 		let photoUrl = './images/icons/no-image.png';
 		if(place.photos && place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
@@ -126,8 +162,8 @@ class GoogleMap extends Component {
 					</object>
 				</div>	
 				<div className="info-data-container">
-					<div className="info-data-item bold-italic-font font-size-small font-color-blue">Name : {place.name}</div>
-					<div className="info-data-item bold-italic-font font-size-small font-color-blue">Address : {place.formatted_address}</div>
+					<div className="info-data-item bold-italic-font font-size-small">Name : {place.name}</div>
+					<div className="info-data-item bold-italic-font font-size-small">Address : {place.formatted_address}</div>
 					<div className="info-data-item">
 						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.showImage}>images</button></span>
 						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.showVideo}>videos</button></span>
@@ -144,22 +180,23 @@ class GoogleMap extends Component {
 		if(newProps.showDefault){
 			if(navigator && navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition((position) => {
-					let centercoord ={};
-					centercoord.lat = position.coords.latitude;
-					centercoord.lng = position.coords.longitude;
-					this.map.panTo(centercoord);
-					this.setMarker(centercoord);
+					this.centercoord ={};
+					this.centercoord.lat = position.coords.latitude;
+					this.centercoord.lng = position.coords.longitude;
+					this.map.panTo();
+					this.setMarker();
 				});
 			}
 		}
 		else {
 			if(newProps.coord) {
-				let centercoord = {
+				this.centercoord = {
 					lat:newProps.coord.lat,
 					lng:newProps.coord.lon
 				};
-				this.map.panTo(centercoord);
-				this.setMarker(centercoord);
+				console.log(this.centercoord);
+				this.map.panTo(this.centercoord);
+				this.setMarker();
 			}
 			if(newProps.name) {
 				this.searchPlaceAttactions(newProps.name);
@@ -168,11 +205,11 @@ class GoogleMap extends Component {
 	}
 
 	render()  {
-		console.log(this.optionList);
 		return (
 			<div className="col-md-8 bg-dusky">
 				<div id="map" className="full-page-height" ref="map"></div>
-				<Nav3d width="64" height="80" mediaList={this.optionList} />
+				<Nav3d width="64" height="80" mediaList={this.optionList} 
+				onOptionClick={this.onOptionClick} />
 			</div>
 		);
 	}

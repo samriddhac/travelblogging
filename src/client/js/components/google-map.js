@@ -77,7 +77,6 @@ class GoogleMap extends Component {
 	setAttractionmarkers(locations) {
 		let _this = this;
 		this.locationMarkers =[];
-		this.resetMarkers();
 		let bounds = new google.maps.LatLngBounds();
 		let infowindow = new google.maps.InfoWindow();
 		if(locations && locations!==null && locations.length>0) {
@@ -183,7 +182,7 @@ class GoogleMap extends Component {
 					this.centercoord ={};
 					this.centercoord.lat = position.coords.latitude;
 					this.centercoord.lng = position.coords.longitude;
-					this.map.panTo();
+					this.map.panTo(this.centercoord);
 					this.setMarker();
 				});
 			}
@@ -194,7 +193,6 @@ class GoogleMap extends Component {
 					lat:newProps.coord.lat,
 					lng:newProps.coord.lon
 				};
-				console.log(this.centercoord);
 				this.map.panTo(this.centercoord);
 				this.setMarker();
 			}

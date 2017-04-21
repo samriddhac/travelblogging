@@ -423,3 +423,9 @@ html, body {
 	opacity: 1.0;
 	transform: rotateZ(7deg);
 }
+.go-fav {
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	cursor: pointer;
+}

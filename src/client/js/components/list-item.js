@@ -5,13 +5,31 @@ export default class ListItem extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			favIcon:'./images/icons/fav-add.png',
+			favText:'Add to favourites'
+		};
 		this.goToPlace = this.goToPlace.bind(this);
 		this.removeListItem = this.removeListItem.bind(this);
 		this.getCssClass = this.getCssClass.bind(this);
+		this.setFav = this.setFav.bind(this);
 	}
 	goToPlace(e) {
-		this.setState({selected:true});
 		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
+	}
+	setFav(e) {
+		if(this.props.fav && this.props.fav === true) {
+			this.state = {
+				favIcon:'./images/icons/fav-add.png',
+				favText:'Add to favourites'
+			};
+		}
+		else {
+			this.state = {
+				favIcon:'./images/icons/fav-remove.png',
+				favText:'Remove from favourites'
+			};
+		}
 	}
 	removeListItem(e) {
 		this.props.removeListItem(this.props.id, this.props.selected);
@@ -26,6 +44,7 @@ export default class ListItem extends Component {
 	}
 	render(){
 		let closeTooltip = <Tooltip id={`${this.props.id}_close`}>Remove</Tooltip>;
+		let favTooltip = <Tooltip id={`${this.props.id}_fav`}>{this.state.favText}</Tooltip>;
 		let weatherTooltip = <Tooltip id={this.props.id}>{this.props.description}</Tooltip>;
 		return (
 			<li className={this.getCssClass()}>
@@ -50,6 +69,9 @@ export default class ListItem extends Component {
 			  				</div>
 			  			</div>
 			  			<div className="go-to-button pull-right">
+			  				<OverlayTrigger overlay={favTooltip} placement="top"delayShow={300} delayHide={150}>
+			  					<img src={this.state.favIcon} onClick={this.setFav} className="go-fav" />
+			  				</OverlayTrigger>
 			  				<button className="btn btn-success btn-xs" onClick={this.goToPlace} 
 			  				>Go to this place</button> 
 			  			</div>

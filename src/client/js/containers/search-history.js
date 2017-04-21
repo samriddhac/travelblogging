@@ -1,58 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import ListItem from '../components/list-item';
+import { searchCity, goToPlace, removeListItem } from '../actions/index';
+import { listitemconfig } from '../utils/configs';
 
 class SearchHistory extends Component {
+	
+	processChilds(city) {
+		return (
+			<ListItem key={city.id} {...city} goToPlace={this.props.goToPlace} removeListItem={this.props.removeListItem}/>
+		);
+	}
+
 	render() {
 		return (
 			<div id="search_history" className="tab-pane fade">
 		    <ul className="list-group bg-dusky list-location-container">
-			  <li className="list-group-item list-location-item rounded-border">
-			  	<div>
-			  		<div>
-			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">City : New York</span>
-			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">Country : United States</span>
-			  			<span className="light-italic-font font-size-small font-color-shady list-location-child-item pull-right">07:34:00AM</span>
-			  		</div>
-			  		<div className="list-item-weather-container">
-			  			<div className="pull-inline weather-component">
-			  				<img src="./icons/m-cloudy.gif"/>
-			  				<div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Max temp: 29F</div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Min temp: 29F</div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Humidity: 34%</div>
-			  				</div>
-			  			</div>
-			  			<div className="go-to-button pull-right">
-			  				<a className="btn btn-success btn-xs" href="">Go to this place</a>
-			  			</div>
-			  		</div>
-			  	</div>
-			  </li>
-			  <li className="list-group-item list-location-item rounded-border">
-			  	<div>
-			  		<div>
-			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">City : San Fransisco</span>
-			  			<span className="bold-italic-font font-size-small font-color-blue list-location-child-item">Country : United States</span>
-			  			<span className="light-italic-font font-size-small font-color-shady list-location-child-item pull-right">07:34:00AM</span>
-			  		</div>
-			  		<div className="list-item-weather-container">
-			  			<div className="pull-inline weather-component">
-			  				<img src="./icons/m-c-rain.gif"/>
-			  				<div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Max temp: 40F</div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Min temp: 29F</div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Humidity: 84%</div>
-			  				</div>
-			  			</div>
-			  			<div className="go-to-button pull-right">
-			  				<a className="btn btn-success btn-xs" href="">Go to this place</a>
-			  			</div>
-			  		</div>
-			  	</div>
-			  </li>
+		    	<ReactCSSTransitionGroup {...listitemconfig}>
+			 		{this.props.cities.map(this.processChilds.bind(this))}	
+			 	</ReactCSSTransitionGroup>
 			</ul>
 		  </div>
 		);
 	}
 }
-
-export default SearchHistory;
+function mapStateToProps(state) {
+	let cities =[];
+	if(state.searchState.all){
+		cities = state.searchState.all;
+	}return {
+		cities
+	};
+}
+export default connect(mapStateToProps)(SearchHistory);

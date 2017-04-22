@@ -13,22 +13,37 @@ export default class ListItem extends Component {
 		this.removeListItem = this.removeListItem.bind(this);
 		this.getCssClass = this.getCssClass.bind(this);
 		this.setFav = this.setFav.bind(this);
+		this.setFavState = this.setFavState.bind(this);
+	}
+	componentWillReceiveProps(newProps) {
+		this.setFavState(newProps);
 	}
 	goToPlace(e) {
 		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
 	}
 	setFav(e) {
 		if(this.props.fav && this.props.fav === true) {
-			this.state = {
-				favIcon:'./images/icons/fav-add.png',
-				favText:'Add to favourites'
-			};
+			this.props.saveFav(this.props.id, false);
 		}
 		else {
-			this.state = {
-				favIcon:'./images/icons/fav-remove.png',
-				favText:'Remove from favourites'
-			};
+			this.props.saveFav(this.props.id, true);
+		}
+		this.setFavState(this.props);
+	}
+	setFavState(props) {
+		if(props.fav) {
+			if(props.fav === true) {
+				this.setState({
+					favIcon:'./images/icons/fav-remove.png',
+					favText:'Remove from favourites'
+				});
+			}
+			else {
+				this.setState({
+					favIcon:'./images/icons/fav-add.png',
+					favText:'Add to favourites'
+				});
+			}
 		}
 	}
 	removeListItem(e) {

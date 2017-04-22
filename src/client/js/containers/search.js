@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ListItem from '../components/list-item';
-import { searchCity, goToPlace, removeListItem } from '../actions/index';
+import { searchCity, goToPlace, removeListItem, saveFav } from '../actions/index';
 import { listitemconfig } from '../utils/configs';
 
 class Search extends Component {
@@ -28,7 +28,8 @@ class Search extends Component {
 
 	processChilds(city) {
 		return (
-			<ListItem key={city.id} {...city} goToPlace={this.props.goToPlace} removeListItem={this.props.removeListItem}/>
+			<ListItem key={city.id} {...city} goToPlace={this.props.goToPlace} 
+			removeListItem={this.props.removeListItem} saveFav={this.props.saveFav} />
 		);
 	}
 
@@ -60,4 +61,4 @@ function mapStateToProps(state) {
 		cities:state.searchState.current
 	};
 }
-export default connect(mapStateToProps, {searchCity, goToPlace, removeListItem})(Search);
+export default connect(mapStateToProps, {searchCity, goToPlace, removeListItem, saveFav})(Search);

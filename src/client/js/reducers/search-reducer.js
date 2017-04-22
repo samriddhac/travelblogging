@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import { SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY, GO_TO_PLACE, REMOVE_ITEM } from '../actions/action-types';
+import { SEARCH_PLACES, FETCH_SEARCH_HISTORY, SAVE_SEARCH_HISTORY, 
+	GO_TO_PLACE, REMOVE_ITEM, SAVE_FAV } from '../actions/action-types';
 import { convertWeatherObject,resetSelection } from '../utils/utilities';
 
 const INITIAL_STATE = {
@@ -15,6 +16,8 @@ export default function (state=INITIAL_STATE, action) {
 
 		case SAVE_SEARCH_HISTORY:
 
+		case SAVE_FAV:
+			return saveFav(state, action);
 		case REMOVE_ITEM:
 			return getRemoveItemState(state, action);
 		case GO_TO_PLACE : 
@@ -22,6 +25,19 @@ export default function (state=INITIAL_STATE, action) {
 		default:
 			return state;
 	}
+}
+
+function saveFav(state, action) {
+	console.log(action);
+	let objC = _.find(state.current, {id: action.payload.id});
+	let indexC = _.indexOf(state.current, objC);
+	objC.fav = action.payload.value;
+	state.current.splice(indexC, 1, objC);
+	let objA = _.find(state.all, {id: action.payload.id});
+	let indexA = _.indexOf(state.all, objA);
+	objA.fav = action.payload.value;
+	state.all.splice(indexA, 1, objA);
+	return {...state, current:[...state.current], all:[...state.all]};
 }
 
 function getGoToPlaceObjState(state, action) {

@@ -5,7 +5,8 @@ import { convertWeatherObject,resetSelection } from '../utils/utilities';
 
 const INITIAL_STATE = {
 	current: [],
-	all:[]
+	all:[],
+	fav:[]
 };
 export default function (state=INITIAL_STATE, action) {
 	switch(action.type) {
@@ -28,7 +29,6 @@ export default function (state=INITIAL_STATE, action) {
 }
 
 function saveFav(state, action) {
-	console.log(action);
 	let objC = _.find(state.current, {id: action.payload.id});
 	let indexC = _.indexOf(state.current, objC);
 	objC.fav = action.payload.value;
@@ -37,7 +37,7 @@ function saveFav(state, action) {
 	let indexA = _.indexOf(state.all, objA);
 	objA.fav = action.payload.value;
 	state.all.splice(indexA, 1, objA);
-	return {...state, current:[...state.current], all:[...state.all]};
+	return {...state, current:[...state.current], all:[...state.all], fav:[...state.fav, objA]};
 }
 
 function getGoToPlaceObjState(state, action) {

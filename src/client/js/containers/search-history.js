@@ -32,9 +32,8 @@ function mapStateToProps(state) {
 	if(state.searchState.all){
 		cities = state.searchState.all;
 	}
-	console.log('cities ',cities);
 	return {
 		cities
 	};
 }
-export default connect(mapStateToProps, {searchCity, goToPlace, removeListItem, })(SearchHistory);
+export default connect(mapStateToProps, {searchCity, goToPlace, removeListItem, saveFav})(SearchHistory);

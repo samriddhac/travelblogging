@@ -28,17 +28,16 @@ export default class ListItem extends Component {
 		else {
 			this.props.saveFav(this.props.id, true);
 		}
-		this.setFavState(this.props);
 	}
 	setFavState(props) {
-		if(props.fav) {
+		if(props.fav!==undefined) {
 			if(props.fav === true) {
 				this.setState({
 					favIcon:'./images/icons/fav-remove.png',
 					favText:'Remove from favourites'
 				});
 			}
-			else {
+			else if(props.fav === false) {
 				this.setState({
 					favIcon:'./images/icons/fav-add.png',
 					favText:'Add to favourites'

@@ -60,17 +60,28 @@ class GoogleMap extends Component {
 			this.setAttractionmarkers(results);
 		}
 	}
+	getCoord(target) {
+		let lan = target.getAttribute('data-coord-lat');
+		let lng = target.getAttribute('data-coord-lng');
+		return {
+			lat:lan,
+			lng:lng
+		};
+	}
 	showImage(e) {
+		const coord = this.getCoord(e.target);
 		const placeName = e.target.getAttribute('data-place');
-		this.props.switchToMedia(true, TYPE_IMAGE, placeName);
+		this.props.switchToMedia(true, TYPE_IMAGE, placeName, coord);
 	}
 	showVideo(e) {
+		const coord = this.getCoord(e.target);
 		const placeName = e.target.getAttribute('data-place');
-		this.props.switchToMedia(true, TYPE_VIDEO, placeName);
+		this.props.switchToMedia(true, TYPE_VIDEO, placeName, coord);
 	}
 	show360(e) {
+		const coord = this.getCoord(e.target);
 		const placeName = e.target.getAttribute('data-place');
-		this.props.switchToMedia(true, TYPE_360, placeName);
+		this.props.switchToMedia(true, TYPE_360, placeName, coord);
 	}
 	onOptionClick(type) {
 		this.searchPlaceAttactions(null, type);
@@ -151,6 +162,8 @@ class GoogleMap extends Component {
 	}
 
 	renderInfoWindow(place) {
+		let latVal = place.geometry.location.lat();
+		let lngVal = place.geometry.location.lng();
 		let photoUrl = './images/icons/no-image.png';
 		if(place.photos && place.photos[0] && place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 100})) {
 			photoUrl = place.photos[0].getUrl({'maxWidth': 100, 'maxHeight': 120});
@@ -166,9 +179,16 @@ class GoogleMap extends Component {
 					<div className="info-data-item bold-italic-font font-size-small">Name : {place.name}</div>
 					<div className="info-data-item bold-italic-font font-size-small">Address : {place.formatted_address}</div>
 					<div className="info-data-item">
-						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.showImage}>images</button></span>
-						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.showVideo}>videos</button></span>
-						<span className="info-button"><button data-place={place.name} className="btn btn-xs btn-success" onClick={this.show360}>360&deg; view</button></span>
+						<span className="info-button"><button data-place={place.name} 
+						data-coord-lat={latVal} data-coord-lng={lngVal}
+						className="btn btn-xs btn-success" onClick={this.showImage}>images</button></span>
+						<span className="info-button"><button data-place={place.name} 
+						data-coord-lat={latVal} data-coord-lng={lngVal}
+						className="btn btn-xs btn-success" onClick={this.showVideo}>videos</button></span>
+						<span className="info-button"><button data-place={place.name} 
+						data-coord-lat={latVal} 
+						data-coord-lng={lngVal} 
+						className="btn btn-xs btn-success" onClick={this.show360}>360&deg; view</button></span>
 					</div>
 				</div>
 			</div>

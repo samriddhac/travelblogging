@@ -11,7 +11,6 @@ export default class Nav3d extends Component {
 	}
 	componentWillMount() {
 		this.rotation =0;
-		console.log(this.props);
 		this.panelCount = this.props.mediaList.length;
 		this.theta =0;
 		this.mediaList = this.props.mediaList;

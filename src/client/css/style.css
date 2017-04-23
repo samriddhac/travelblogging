@@ -429,3 +429,11 @@ html, body {
 	margin-right: 5px;
 	cursor: pointer;
 }
+.streetview {
+	position: absolute;
+	height: auto;
+	top: 45px;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+}

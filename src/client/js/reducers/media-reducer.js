@@ -12,7 +12,8 @@ export default function (state=INITIAL_STATE, action) {
 		case SWITCH_TO_MEDIA:
 			let newState = { ...state, show:action.payload.show, name:action.payload.name, 
 				type:action.payload.type, mediaList:copyMediaList(action.payload.type, action.payload.mediaList),
-				activeMedia:copyMediaObj(action.payload.type, action.payload.activeMedia)};
+				activeMedia:copyMediaObj(action.payload.type, action.payload.activeMedia),
+				coord:action.payload.coord};
 			return newState;
 		default:
 			return state;

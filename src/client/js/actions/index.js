@@ -49,7 +49,7 @@ export function removeListItem(id, selected) {
 	};
 }
 
-export function switchToMedia(value, type, name) {
+export function switchToMedia(value, type, name, coord) {
 	if(type === TYPE_VIDEO) {
 		return (dispatch)=> {
 			YTSearch({key:GOOGLE_API_KEY, term: name, maxResult:10}, (videos) => {
@@ -61,7 +61,8 @@ export function switchToMedia(value, type, name) {
 						name,
 						type,
 						mediaList:videos,
-						activeMedia:firstMedia
+						activeMedia:firstMedia,
+						coord
 					}
 				});
 			});
@@ -75,7 +76,8 @@ export function switchToMedia(value, type, name) {
 				name,
 				type,
 				mediaList:[],
-				activeMedia:{}
+				activeMedia:{},
+				coord
 			}
 		};
 	}

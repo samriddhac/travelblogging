@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { switchToMedia } from '../actions/index';
 import Carousel3d from '../components/carousel3d';
+import StreetView from '../components/streetview';
+import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
 
 class MediaContainer extends Component {
 
@@ -47,14 +49,18 @@ class MediaContainer extends Component {
 		this.props.switchToMedia(false);
 	}
 	render() {
-		let {name, type, mediaList } = this.props;
+		let {name, type, mediaList, coord } = this.props;
+		let view = (<Carousel3d mediaList={mediaList} type={type} name={name} width="504" height="254" />);
+		if(type === TYPE_360) {
+			view = (<StreetView coord={coord} />);
+		}
 		return (
 			<div className={this.getContainerClass()} style={this.getStyle()}>
 				<div className="media-bg-btn">
 					<span className="media-bg-btn-item"><button className="btn btn-success btn-xs" onClick={this.setCss}>{this.state.displayText}</button></span>
 					<span className="close-item close-item-lg media-bg-btn-item close-item-m-list" aria-hidden="true" onClick={this.close}>&times;</span>
 				</div>
-				<Carousel3d mediaList={mediaList} type={type} name={name} width="504" height="254" />
+				{view}
 			</div>
 		);
 	}
@@ -66,7 +72,8 @@ function mapStateToProps(state) {
 		mediaList:state.mediastate.mediaList,
 		activeMedia:state.mediastate.activeMedia,
 		type:state.mediastate.type,
-		name:state.mediastate.name
+		name:state.mediastate.name,
+		coord:state.mediastate.coord
 	};
 }
 export default connect(mapStateToProps, {switchToMedia})(MediaContainer);

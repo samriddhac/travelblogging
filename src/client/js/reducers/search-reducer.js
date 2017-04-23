@@ -37,7 +37,18 @@ function saveFav(state, action) {
 	let indexA = _.indexOf(state.all, objA);
 	objA.fav = action.payload.value;
 	state.all.splice(indexA, 1, objA);
-	return {...state, current:[...state.current], all:[...state.all], fav:[...state.fav, objA]};
+	let fdata = state.fav;
+	if(action.payload.value===false) {
+		_.remove(fdata, (item) => {
+			return item.id === action.payload.id;
+		});
+	}
+	else {
+		fdata = [...state.fav, objA];
+	}
+	console.log(fdata);
+	console.log(objA);
+	return {...state, current:[...state.current], all:[...state.all], fav:[...fdata]};
 }
 
 function getGoToPlaceObjState(state, action) {
@@ -58,6 +69,10 @@ function getRemoveItemState(state, action) {
 	_.remove(adata, (item) => {
 		return item.id === id;
 	});
+	let fdata = state.fav;
+	_.remove(fdata, (item) => {
+		return item.id === id;
+	});
 	return {...state,current:[ ...cdata],
-		all:[...adata]};
+		all:[...adata], fav:[...fdata]};
 }

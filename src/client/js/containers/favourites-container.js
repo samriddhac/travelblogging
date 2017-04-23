@@ -31,6 +31,7 @@ function mapStateToProps(state) {
 	if(state.searchState.fav){
 		cities = state.searchState.fav;
 	}
+	console.log('cities ', cities);
 	return {
 		cities
 	};

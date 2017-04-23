@@ -5,15 +5,31 @@ export default class ListItem extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {
-			favIcon:'./images/icons/fav-add.png',
-			favText:'Add to favourites'
-		};
 		this.goToPlace = this.goToPlace.bind(this);
 		this.removeListItem = this.removeListItem.bind(this);
 		this.getCssClass = this.getCssClass.bind(this);
 		this.setFav = this.setFav.bind(this);
 		this.setFavState = this.setFavState.bind(this);
+		if(props.fav===undefined){
+			this.state = {
+				favIcon:'./images/icons/fav-add.png',
+				favText:'Add to favourites'
+			}
+		}
+		else {
+			if(props.fav === true) {
+				this.state = {
+					favIcon:'./images/icons/fav-remove.png',
+					favText:'Remove from favourites'
+				};
+			}
+			else if(props.fav === false) {
+				this.state = {
+					favIcon:'./images/icons/fav-add.png',
+					favText:'Add to favourites'
+				};
+			}
+		}
 	}
 	componentWillReceiveProps(newProps) {
 		this.setFavState(newProps);
@@ -43,6 +59,12 @@ export default class ListItem extends Component {
 					favText:'Add to favourites'
 				});
 			}
+		}
+		else {
+			this.setState({
+				favIcon:'./images/icons/fav-add.png',
+				favText:'Add to favourites'
+			});
 		}
 	}
 	removeListItem(e) {

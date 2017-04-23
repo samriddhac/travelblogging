@@ -40,6 +40,7 @@ class GoogleMap extends Component {
 	searchPlaceAttactions(name, type) {
 		let request = null;
 		if(name) {
+			this.resetMarkers();
 			request = {
 				query:`${name}${pointOfInterest}`
 			};
@@ -106,10 +107,11 @@ class GoogleMap extends Component {
 				this.locationMarkers,
 				{imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
 				);
+			this.currentype = null;
 		}
 	}
 	resetMarkers() {
-		if(this.locationMarkers) {
+		if(this.locationMarkers!==undefined) {
 			this.locationMarkers.map((m) => {
 				m.setMap(null);
 			});

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import YTSearch from 'youtube-api-search';
 import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,
-	SAVE_SEARCH_HISTORY,GO_TO_PLACE, REMOVE_ITEM, SWITCH_TO_MEDIA, SAVE_FAV} from './action-types';
+	SAVE_SEARCH_HISTORY,GO_TO_PLACE, REMOVE_ITEM, SWITCH_TO_MEDIA, SAVE_FAV,
+	DELETE_ALL_HISTORY, DELETE_ALL_FAV} from './action-types';
 import {WEATHER_ENDPOINT, GOOGLE_API_KEY} from './action-endpoints';
 import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
 
@@ -18,6 +19,16 @@ export function searchCity(term) {
 	};
 }
 
+export function deleteAllHistory() {
+	return {
+		type:DELETE_ALL_HISTORY
+	};
+}
+export function deleteAllFav() {
+	return {
+		type:DELETE_ALL_FAV
+	};
+}
 export function saveFav(id, value) {
 	return {
 		type:SAVE_FAV,

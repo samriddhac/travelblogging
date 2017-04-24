@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ListItem from '../components/list-item';
-import { searchCity, goToPlace, removeListItem, saveFav } from '../actions/index';
+import { searchCity, goToPlace, removeListItem, saveFav, deleteAllFav } from '../actions/index';
 import { listitemconfig } from '../utils/configs';
 
 class FavouritesContainer extends Component {
@@ -17,6 +17,12 @@ class FavouritesContainer extends Component {
 	render() {
 		return (
 			<div id="favs" className="tab-pane fade">
+				<div className="dell-all-box">
+					<button className="btn btn-xs btn-danger"
+					onClick={(e)=>{
+						this.props.deleteAllFav();
+					}}>Delete All Favourites</button>
+				</div>
 			    <ul className="list-group bg-dusky list-location-container">
 			    	<ReactCSSTransitionGroup {...listitemconfig}>
 				 		{this.props.cities.map(this.processChilds.bind(this))}	
@@ -35,4 +41,5 @@ function mapStateToProps(state) {
 		cities
 	};
 }
-export default connect(mapStateToProps, {searchCity, goToPlace, removeListItem, saveFav})(FavouritesContainer);
+export default connect(mapStateToProps, {searchCity, goToPlace, 
+	removeListItem, saveFav, deleteAllFav})(FavouritesContainer);

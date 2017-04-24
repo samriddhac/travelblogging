@@ -7,4 +7,6 @@ export const SAVE_SEARCH_HISTORY = 'SAVE_SEARCH_HISTORY';
 export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const SWITCH_TO_MEDIA = 'SWITCH_TO_MEDIA';
 export const SAVE_FAV = 'SAVE_FAV';
+export const DELETE_ALL_HISTORY = 'DELETE_ALL_HISTORY';
+export const DELETE_ALL_FAV = 'DELETE_ALL_FAV';
 

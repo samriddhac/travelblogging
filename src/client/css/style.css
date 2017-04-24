@@ -437,3 +437,8 @@ html, body {
 	left: 20px;
 	right: 20px;
 }
+.dell-all-box {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	position: relative;
+}

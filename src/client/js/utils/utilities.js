@@ -32,6 +32,43 @@ export function resetSelection(obj, objlist) {
 	});
 	return objlist;
 }
+export function resetAllSelection(state) {
+	let obj = state.searchState;
+	if(obj!==undefined) {
+		if(obj.current!==undefined && obj.current!==null){
+			let cArray =[];
+			obj.current.forEach(function(o) {
+				if(o && o!==undefined && o!==null) {
+					o.selected = false;
+					cArray = [...cArray, o];
+				}
+			});
+			obj.current =cArray;
+		}
+		if(obj.all!==undefined && obj.all!==null){
+			let aArray =[];
+			obj.all.forEach(function(o) {
+				if(o && o!==undefined && o!==null) {
+					o.selected = false;
+					aArray = [...aArray, o];
+				}
+			});
+			obj.all =aArray;
+		}
+		if(obj.fav!==undefined && obj.fav!==null){
+			let fArray =[];
+			obj.fav.forEach(function(o) {
+				if(o && o!==undefined && o!==null) {
+					o.selected = false;
+					fArray = [...fArray, o];
+				}
+			});
+			obj.fav =fArray;
+		}
+	}
+	state.searchState = obj;
+	return state;
+}
 export function copyMediaList(type, mediaList) {
 	let mediaItems = [];
 	if(mediaList && mediaList.length!=0) {
@@ -53,10 +90,27 @@ export function copyMediaObj(type, media) {
 
 		};
 	}
-	else if(type === TYPE_360) {
-		return {
+}
 
-		};
+export const loadState = () =>{
+	try{
+		const serializedState = localStorage.getItem('state');
+		if(serializedState===null){
+			return undefined;
+		}
+		return JSON.parse(serializedState);
+	}
+	catch(err) {
+		return undefined;
+	}
+} 
+export const saveState = (state) => {
+	try {
+		const serializedState = JSON.stringify(state);
+		localStorage.setItem('state', serializedState);
+	}
+	catch(err) {
+		console.error(err);
 	}
 }
 

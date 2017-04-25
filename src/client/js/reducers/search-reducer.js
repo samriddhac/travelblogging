@@ -14,8 +14,8 @@ const INITIAL_STATE = {
 export default function (state=INITIAL_STATE, action) {
 	switch(action.type) {
 		case SEARCH_PLACES : 
-			return {...state, current:[convertWeatherObject(action.payload.data), ...state.current]
-				, all:[convertWeatherObject(action.payload.data), ...state.all]};
+			return {...state, current:[convertWeatherObject(action.payload), ...state.current]
+				, all:[convertWeatherObject(action.payload), ...state.all]};
 		case DELETE_ALL_HISTORY : 
 			return {...state, all:[], fav:[]};
 		case DELETE_ALL_FAV:

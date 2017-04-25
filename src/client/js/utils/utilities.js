@@ -1,23 +1,40 @@
 import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
+import _ from 'lodash';
 import countries from '../data/country.json';
 import weathericon from '../data/weather-icons.json';
 
 
 export function convertWeatherObject(obj) {
 	if(obj && obj!==null) {
+		console.log(obj);
 		return {
-			id: obj.id,
-			cityName:obj.name,
-			countryName:countries[obj.sys.country],
-			coord:obj.coord,
-			maxTemp:obj.main.temp_max,
-			minTemp:obj.main.temp_min,
-			humidity:obj.main.humidity,
-			localTime:'08:00:00AM',
-			icon:weathericon[obj.weather[0].id],
-			description:obj.weather[0].description
+			id: _.uniqueId(),
+			cityName:obj.city,
+			place:obj.name,
+			coord:{lat:obj.weatherData.data.latitude, lon:obj.weatherData.data.longitude},
+			temp:obj.weatherData.data.currently.temperature,
+			humidity:getPercent(obj.weatherData.data.currently.humidity),
+			dewpoint:obj.weatherData.data.currently.dewPoint,
+			localTime:getTime(new Date(obj.weatherData.data.currently.time)),
+			icon:weathericon[obj.weatherData.data.currently.icon],
+			description:obj.weatherData.data.currently.summary
 		};
 	}
+}
+function getPercent(val) {
+	return Number(val)*100;
+}
+function getTime(date) {
+	var seconds = Math.floor(date.getSeconds()),
+        hours = Math.floor(seconds / 3600);
+    seconds -= hours*3600;
+    var minutes = Math.floor(seconds / 60);
+    seconds -= minutes*60;
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds;
 }
 export function resetSelection(obj, objlist) {
 	objlist.forEach(function(o) {

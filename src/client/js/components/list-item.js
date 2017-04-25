@@ -89,8 +89,7 @@ export default class ListItem extends Component {
 			  			<span className="pull-right close-item close-item-sm close-item-w-list" aria-hidden="true" onClick={this.removeListItem}>&times;</span>
 			  		</OverlayTrigger>
 			  		<div>
-			  			<span className="bold-italic-font font-size-small list-location-child-item">City : {this.props.cityName}</span>
-			  			<span className="bold-italic-font font-size-small list-location-child-item">Country : {this.props.countryName}</span>
+			  			<span className="bold-italic-font font-size-small list-location-child-item">Place : {this.props.place}</span>
 			  			<span className="light-italic-font font-size-small font-color-shady list-location-child-item pull-right">{this.props.localTime}</span>
 			  		</div>
 			  		<div className="list-item-weather-container">
@@ -99,8 +98,8 @@ export default class ListItem extends Component {
 			  					<img src={`./images/icons/${this.props.icon}`}/>
 			  				</OverlayTrigger>
 			  				<div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Max temp: {this.props.maxTemp}&deg;C</div>
-			  					<div className="light-italic-font font-size-small font-color-shady">Min temp: {this.props.minTemp}&deg;C</div>
+			  					<div className="light-italic-font font-size-small font-color-shady">Temp: {this.props.temp}&deg;C</div>
+			  					<div className="light-italic-font font-size-small font-color-shady">Dew point: {this.props.dewpoint}&deg;C</div>
 			  					<div className="light-italic-font font-size-small font-color-shady">Humidity: {this.props.humidity}%</div>
 			  				</div>
 			  			</div>

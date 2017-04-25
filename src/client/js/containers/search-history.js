@@ -18,17 +18,17 @@ class SearchHistory extends Component {
 	render() {
 		return (
 			<div id="search_history" className="tab-pane fade">
-				<div className="dell-all-box">
-					<button className="btn btn-xs btn-danger"
-					onClick={(e)=>{
-						this.props.deleteAllHistory();
-					}}>Delete All Search History</button>
-				</div>
 			    <ul className="list-group bg-dusky list-location-container">
 			    	<ReactCSSTransitionGroup {...listitemconfig}>
 				 		{this.props.cities.map(this.processChilds.bind(this))}	
 				 	</ReactCSSTransitionGroup>
 				</ul>
+				<div className="dell-all-box">
+					<button className="btn btn-xs btn-danger danger-pad"
+					onClick={(e)=>{
+						this.props.deleteAllHistory();
+					}}>Delete All Search History</button>
+				</div>
 		  	</div>
 		);
 	}

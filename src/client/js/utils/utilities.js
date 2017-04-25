@@ -33,41 +33,44 @@ export function resetSelection(obj, objlist) {
 	return objlist;
 }
 export function resetAllSelection(state) {
-	let obj = state.searchState;
-	if(obj!==undefined) {
-		if(obj.current!==undefined && obj.current!==null){
-			let cArray =[];
-			obj.current.forEach(function(o) {
-				if(o && o!==undefined && o!==null) {
-					o.selected = false;
-					cArray = [...cArray, o];
-				}
-			});
-			obj.current =cArray;
+	if(state!==undefined) {
+		let obj = state.searchState;
+		if(obj!==undefined) {
+			if(obj.current!==undefined && obj.current!==null){
+				let cArray =[];
+				obj.current.forEach(function(o) {
+					if(o && o!==undefined && o!==null) {
+						o.selected = false;
+						cArray = [...cArray, o];
+					}
+				});
+				obj.current =cArray;
+			}
+			if(obj.all!==undefined && obj.all!==null){
+				let aArray =[];
+				obj.all.forEach(function(o) {
+					if(o && o!==undefined && o!==null) {
+						o.selected = false;
+						aArray = [...aArray, o];
+					}
+				});
+				obj.all =aArray;
+			}
+			if(obj.fav!==undefined && obj.fav!==null){
+				let fArray =[];
+				obj.fav.forEach(function(o) {
+					if(o && o!==undefined && o!==null) {
+						o.selected = false;
+						fArray = [...fArray, o];
+					}
+				});
+				obj.fav =fArray;
+			}
 		}
-		if(obj.all!==undefined && obj.all!==null){
-			let aArray =[];
-			obj.all.forEach(function(o) {
-				if(o && o!==undefined && o!==null) {
-					o.selected = false;
-					aArray = [...aArray, o];
-				}
-			});
-			obj.all =aArray;
-		}
-		if(obj.fav!==undefined && obj.fav!==null){
-			let fArray =[];
-			obj.fav.forEach(function(o) {
-				if(o && o!==undefined && o!==null) {
-					o.selected = false;
-					fArray = [...fArray, o];
-				}
-			});
-			obj.fav =fArray;
-		}
+		state.searchState = obj;
+		return state;
 	}
-	state.searchState = obj;
-	return state;
+	return {};
 }
 export function copyMediaList(type, mediaList) {
 	let mediaItems = [];

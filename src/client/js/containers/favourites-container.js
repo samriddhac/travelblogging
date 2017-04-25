@@ -17,17 +17,17 @@ class FavouritesContainer extends Component {
 	render() {
 		return (
 			<div id="favs" className="tab-pane fade">
-				<div className="dell-all-box">
-					<button className="btn btn-xs btn-danger"
-					onClick={(e)=>{
-						this.props.deleteAllFav();
-					}}>Delete All Favourites</button>
-				</div>
 			    <ul className="list-group bg-dusky list-location-container">
 			    	<ReactCSSTransitionGroup {...listitemconfig}>
 				 		{this.props.cities.map(this.processChilds.bind(this))}	
 				 	</ReactCSSTransitionGroup>
 				</ul>
+				<div className="dell-all-box">
+					<button className="btn btn-xs btn-danger  danger-pad"
+					onClick={(e)=>{
+						this.props.deleteAllFav();
+					}}>Delete All Favourites</button>
+				</div>
 		  	</div>
 		);
 	}

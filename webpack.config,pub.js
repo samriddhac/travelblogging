@@ -8,7 +8,7 @@ var config ={
 		'./src/client/js/index'
 	],
 	output: {
-		path:path.join(__dirname, '../tourprototype'),
+		path:path.join(__dirname, '../../tourprototype'),
 		filename:'app.bundle.js',
 		publicPath:'/'
 	},
@@ -40,7 +40,7 @@ var config ={
 	],
 	devServer:{
 		port:3030,
-		contentBase: '../tourprototype'
+		contentBase: '../../tourprototype'
 	}
 };
 module.exports = config;

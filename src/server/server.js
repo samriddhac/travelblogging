@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const DarkSky = require('dark-sky');
+const uuidV1 = require('uuid/v1');
 const API_KEY = 'e5256f7af949d0a52aac060282dd106f';
 const app = express();
 app.use(logger('dev'));
@@ -26,6 +27,7 @@ app.get('/weather/:lat/:lng', (req, res) => {
     .extendHourly(true)
     .get()
     .then(response => {
+    	response.id = uuidV1();
         res.status(200).send(response);
     })
     .catch(err => {

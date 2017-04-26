@@ -1,5 +1,6 @@
 import axios from 'axios';
 import YTSearch from 'youtube-api-search';
+import _ from 'lodash';
 
 import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,
 	SAVE_SEARCH_HISTORY,GO_TO_PLACE, REMOVE_ITEM, SWITCH_TO_MEDIA, SAVE_FAV,
@@ -35,6 +36,7 @@ export function searchCity(term) {
 				dispatch({
 					type: SEARCH_PLACES,
 					payload: {
+						id:data.data.id,
 						name:result[0].formatted_address,
 						city:result[0].name,
 						weatherData:data

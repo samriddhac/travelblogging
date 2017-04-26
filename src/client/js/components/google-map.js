@@ -181,7 +181,7 @@ class GoogleMap extends Component {
 					<div className="info-data-item">
 						<span className="info-button"><button data-place={place.name} 
 						data-coord-lat={latVal} data-coord-lng={lngVal}
-						className="btn btn-xs btn-success" onClick={this.showImage}>images</button></span>
+						className="btn btn-xs btn-success disabled" onClick={this.showImage}>images</button></span>
 						<span className="info-button"><button data-place={place.name} 
 						data-coord-lat={latVal} data-coord-lng={lngVal}
 						className="btn btn-xs btn-success" onClick={this.showVideo}>videos</button></span>

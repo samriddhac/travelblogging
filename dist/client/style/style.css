@@ -441,4 +441,9 @@ html, body {
 	margin-top: 10px;
 	margin-bottom: 10px;
 	position: relative;
+} 
+.danger-pad {
+	margin-left: 5px;
+	margin-bottom: 5px;
+	float: right;
 }

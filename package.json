@@ -8,7 +8,8 @@
     "build": "webpack --config webpack.config.js",
     "publish": "webpack --config webpack.config,pub.js",
     "start": "webpack-dev-server --config webpack.config.js",
-    "start:server": "nodemon ./src/server/www"
+    "start:server": "nodemon ./src/server/www",
+    "start:client": "forever start client.js"
   },
   "author": "Samriddha Chatterjee",
   "license": "ISC",

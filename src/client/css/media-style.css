@@ -42,6 +42,29 @@
   animation: anime-opacity 1s;
   animation-timing-function: linear;
 }
+
+/*----Phone Potrait---*/
+@media screen 
+  and (device-width: 320px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) 
+  and (orientation: portrait) {
+
+}
+@media (min-width: 300px) {
+  .container {
+    width: 95%;
+  }
+  #map {
+    width: 95%;
+    height: 200px;
+  }
+  .list-location-container {
+    max-height: 160px;
+  }
+}
+/*----End-----*/
+
 /* ----------- HTC One ----------- */
 
 /* Portrait and Landscape */

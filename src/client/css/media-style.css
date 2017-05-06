@@ -51,18 +51,6 @@
   and (orientation: portrait) {
 
 }
-@media (min-width: 300px) {
-  .container {
-    width: 95%;
-  }
-  #map {
-    width: 95%;
-    height: 200px;
-  }
-  .list-location-container {
-    max-height: 160px;
-  }
-}
 /*----End-----*/
 
 /* ----------- HTC One ----------- */

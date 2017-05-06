@@ -26,6 +26,18 @@ html, body {
 	overflow-y: scroll;
 	margin-bottom: 0px;
 }
+@media (min-width: 300px) {
+  .container {
+    width: 95%;
+  }
+  #map {
+    width: 95%;
+    height: 200px;
+  }
+  .list-location-container {
+    max-height: 160px;
+  }
+}
 @media (min-width: 500px) {
 	.container {
 		width: 480px;

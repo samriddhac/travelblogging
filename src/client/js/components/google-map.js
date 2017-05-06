@@ -139,7 +139,7 @@ class GoogleMap extends Component {
 	}
 
 	componentDidMount() {
-		this.centercoord = { lat: 0, lng: 0 };
+		this.centercoord = { lat: 51.4826, lng: 0.0077 };
 		if(!this.props.coord || (!this.props.coord.lat && !this.props.coord.lon)) {
 			if(navigator && navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition((position) => {

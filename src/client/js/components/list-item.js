@@ -35,6 +35,7 @@ export default class ListItem extends Component {
 		this.setFavState(newProps);
 	}
 	goToPlace(e) {
+		this.props.showMobileMap(true);
 		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
 	}
 	setFav(e) {

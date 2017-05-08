@@ -25,6 +25,7 @@ html, body {
 .list-location-container {
 	overflow-y: scroll;
 	margin-bottom: 0px;
+	max-height: 75vh;
 }
 @media (min-width: 300px) {
   .container {
@@ -33,9 +34,6 @@ html, body {
   #map {
     width: 95%;
     height: 200px;
-  }
-  .list-location-container {
-    max-height: 160px;
   }
 }
 @media (min-width: 500px) {
@@ -46,9 +44,6 @@ html, body {
 		width: 420px;
 		height: 360px;
 	}
-	.list-location-container {
-		max-height: 320px;
-	}
 }
 @media (min-width: 768px) {
 	.container {
@@ -57,9 +52,6 @@ html, body {
 	#map {
 		width: 600px;
 		height: 480px;
-	}
-	.list-location-container {
-		max-height: 440px;
 	}
 }
 @media (min-width: 992px) {
@@ -70,9 +62,6 @@ html, body {
 		width: 680px;
 		height: 480px;
 	}
-	.list-location-container {
-		max-height: 440px;
-	}
 }
 @media (min-width: 1200px) {
 	.container {
@@ -82,9 +71,6 @@ html, body {
 		width: 800px;
 		height: 480px;
 	}
-	.list-location-container {
-		max-height: 440px;
-	}
 }
 @media (min-width: 1350px) {
 	.container {
@@ -93,9 +79,6 @@ html, body {
 	#map {
 		width: 840px;
 		height: 540px;
-	}
-	.list-location-container {
-		max-height: 440px;
 	}
 }
 .text-input-search {
@@ -117,10 +100,7 @@ html, body {
 	transition: box-shadow 1s, background-color 1s;
 	transition-timing-function: ease-in-out;
 }
-/*li.list-group-item {
-	transition: box-shadow 1s, background-color 1s;
-	transition-timing-function: ease-in-out;
-}*/
+
 .list-location-item:hover {
 	background-color: #f3f7aa;
 	box-shadow: 0px 0px 0px #fff;
@@ -446,4 +426,48 @@ html, body {
 	margin-left: 5px;
 	margin-bottom: 5px;
 	float: right;
+}
+@keyframes anime-opacity {
+  0% {
+    opacity: 0.0;
+    top:-200px;
+  }
+  25% {
+    opacity: 0.25;
+    top:-150px;
+  }
+  50% {
+    opacity: 0.5;
+    top:-100px;
+  }
+  75% {
+    opacity: 0.75;
+    top:-50px;
+  }
+  100% {
+    opacity: 1.0;
+    top:0;
+  }
+}
+.media-container {
+  display: none;
+  margin: 52px 0 0 0;
+  padding: 15px;
+  z-index: 10;
+  width: 100%;
+  height:91.84953%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1.0;
+}
+.m-light {
+  background-color: #fff;
+  animation: anime-opacity 1s;
+  animation-timing-function: linear;
+}
+.m-dark {
+  background-color: #000;
+  animation: anime-opacity 1s;
+  animation-timing-function: linear;
 }

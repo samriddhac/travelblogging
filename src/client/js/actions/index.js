@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import {SEARCH_PLACES,FETCH_FEEDS,FETCH_FAVS,FETCH_SEARCH_HISTORY,
 	SAVE_SEARCH_HISTORY,GO_TO_PLACE, REMOVE_ITEM, SWITCH_TO_MEDIA, SAVE_FAV,
-	DELETE_ALL_HISTORY, DELETE_ALL_FAV} from './action-types';
+	DELETE_ALL_HISTORY, DELETE_ALL_FAV, SHOW_MOBILE_MAP} from './action-types';
 import {WEATHER_ENDPOINT, GOOGLE_API_KEY, WEATHER_API_KEY} from './action-endpoints';
 import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
 
@@ -44,6 +44,13 @@ export function searchCity(term) {
 				});
 			});
 		});
+	};
+}
+
+export function showMobileMap(value) {
+	return {
+		type:SHOW_MOBILE_MAP,
+		payload: value
 	};
 }
 

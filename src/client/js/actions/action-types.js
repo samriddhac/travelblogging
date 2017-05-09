@@ -9,5 +9,5 @@ export const SWITCH_TO_MEDIA = 'SWITCH_TO_MEDIA';
 export const SAVE_FAV = 'SAVE_FAV';
 export const DELETE_ALL_HISTORY = 'DELETE_ALL_HISTORY';
 export const DELETE_ALL_FAV = 'DELETE_ALL_FAV';
-export const SHOW_MOBILE_MAP = 'SHOW_MOBILE_MAP';
+export const CHANGE_MOBILE_VIEW = 'CHANGE_MOBILE_VIEW';
 

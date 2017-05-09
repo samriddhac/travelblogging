@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ListItem from '../components/list-item';
-import { searchCity, goToPlace, removeListItem, saveFav, deleteAllFav, showMobileMap } from '../actions/index';
+import { searchCity, goToPlace, removeListItem, saveFav, deleteAllFav, changeMobileView } from '../actions/index';
 import { listitemconfig } from '../utils/configs';
 
 class FavouritesContainer extends Component {
@@ -11,7 +11,7 @@ class FavouritesContainer extends Component {
 		return (
 			<ListItem key={city.id} {...city} goToPlace={this.props.goToPlace} 
 			removeListItem={this.props.removeListItem} saveFav={this.props.saveFav} 
-			showMobileMap={this.props.showMobileMap} />
+			changeMobileView={this.props.changeMobileView} />
 		);
 	}
 
@@ -43,4 +43,4 @@ function mapStateToProps(state) {
 	};
 }
 export default connect(mapStateToProps, {searchCity, goToPlace, 
-	removeListItem, saveFav, deleteAllFav, showMobileMap})(FavouritesContainer);
+	removeListItem, saveFav, deleteAllFav, changeMobileView})(FavouritesContainer);

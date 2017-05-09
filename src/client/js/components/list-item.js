@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { MOBILE_VIEW_MAP } from '../common/constants';
 
 export default class ListItem extends Component {
 
@@ -35,7 +36,7 @@ export default class ListItem extends Component {
 		this.setFavState(newProps);
 	}
 	goToPlace(e) {
-		this.props.showMobileMap(true);
+		this.props.changeMobileView(MOBILE_VIEW_MAP);
 		this.props.goToPlace(this.props.id, this.props.cityName, this.props.coord);
 	}
 	setFav(e) {

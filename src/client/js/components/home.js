@@ -5,7 +5,7 @@ import Header from './header';
 import GoogleMap from './google-map';
 import NavContainer from './left-nav-container';
 import MediaContainer from '../containers/media-container';
-import MobileMapContainer from '../containers/mobile-map';
+import MobileviewManager from '../containers/mobile-view-manager';
 
 export default (props) => {
 	return (
@@ -17,13 +17,12 @@ export default (props) => {
 						<NavContainer />
 						<GoogleMap />
 					</div>
+					<MediaContainer />
 				</div>
 			</MediaQuery>
 			<MediaQuery query='(min-device-width:300px) and (max-device-width: 736px)'>
-				<NavContainer />
-				<MobileMapContainer />
+				<MobileviewManager />
 			</MediaQuery>
-			<MediaContainer />
 		</div>
 	);
 }

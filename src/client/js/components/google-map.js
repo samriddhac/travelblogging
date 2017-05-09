@@ -30,6 +30,10 @@ class GoogleMap extends Component {
 
 	renderMap() {
 		this.map = new google.maps.Map(this.refs.map, {
+			mapTypeControlOptions: {
+              style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+              position: google.maps.ControlPosition.TOP_CENTER
+          	},
 			zoom:zoom,
 			center: this.centercoord,
 			mapTypeId: google.maps.MapTypeId.HYBRID

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { showMobileMap } from '../actions/index';
+import { changeMobileView } from '../actions/index';
+import { MOBILE_VIEW_SEARCH } from  '../common/constants';
 import GoogleMap from '../components/google-map';
 
 class MobileMapContainer extends Component {
@@ -13,23 +14,14 @@ class MobileMapContainer extends Component {
 		};
 		this.close = this.close.bind(this);
 	}
-
 	close(e) {
-		this.props.showMobileMap(false);
+		this.props.changeMobileView(MOBILE_VIEW_SEARCH);
 	}
-
-	getStyle() {
-		if(this.props.showmap) {
-			return {display:'block'};
-		}
-		return {display:'none'};
-	}
-
 	render() {
 		return (
-			<div style={this.getStyle()}>
-				<div className="media-bg-btn">
-					<span className="close-item close-item-lg media-bg-btn-item close-item-m-list" aria-hidden="true" onClick={this.close}>&times;</span>
+			<div className="mobile-map-container">
+				<div>
+					<img src="./images/icons/arrow-back.ico" width="20px" height="20px"/>
 				</div>
 				<GoogleMap />
 			</div>
@@ -38,7 +30,7 @@ class MobileMapContainer extends Component {
 }
 
 function mapStateToProps(state) {
-	let showmap = state.mobileMapState.showmap
-	return {showmap};
+	let viewId = state.mobileViewState.id;
+	return {viewId};
 }
-export default connect(mapStateToProps)(MobileMapContainer);
+export default connect(mapStateToProps, {changeMobileView})(MobileMapContainer);

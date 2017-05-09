@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ListItem from '../components/list-item';
-import { searchCity, goToPlace, removeListItem, saveFav, deleteAllHistory, showMobileMap } from '../actions/index';
+import { searchCity, goToPlace, removeListItem, saveFav, deleteAllHistory, changeMobileView } from '../actions/index';
 import { listitemconfig } from '../utils/configs';
 
 class SearchHistory extends Component {
@@ -12,7 +12,7 @@ class SearchHistory extends Component {
 		return (
 			<ListItem key={city.id} {...city} goToPlace={this.props.goToPlace} 
 			removeListItem={this.props.removeListItem} saveFav={this.props.saveFav}
-			showMobileMap={this.props.showMobileMap} />
+			changeMobileView={this.props.changeMobileView} />
 		);
 	}
 
@@ -44,4 +44,4 @@ function mapStateToProps(state) {
 	};
 }
 export default connect(mapStateToProps, {searchCity, goToPlace, 
-	removeListItem, saveFav, deleteAllHistory, showMobileMap})(SearchHistory);
+	removeListItem, saveFav, deleteAllHistory, changeMobileView})(SearchHistory);

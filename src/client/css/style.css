@@ -21,29 +21,24 @@ html, body {
 }
 #map {
 	position: absolute;
+	height:88vh;
+}
+.mobile-map-container {
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 .list-location-container {
 	overflow-y: scroll;
 	margin-bottom: 0px;
 	max-height: 75vh;
 }
-@media (min-width: 300px) {
+@media (min-width: 300px) and (max-width: 736px) {
   .container {
     width: 95%;
   }
   #map {
     width: 95%;
-    height: 200px;
   }
-}
-@media (min-width: 500px) {
-	.container {
-		width: 480px;
-	}
-	#map {
-		width: 420px;
-		height: 360px;
-	}
 }
 @media (min-width: 768px) {
 	.container {
@@ -51,7 +46,6 @@ html, body {
 	}
 	#map {
 		width: 600px;
-		height: 480px;
 	}
 }
 @media (min-width: 992px) {
@@ -60,7 +54,6 @@ html, body {
 	}
 	#map {
 		width: 680px;
-		height: 480px;
 	}
 }
 @media (min-width: 1200px) {
@@ -69,7 +62,6 @@ html, body {
 	}
 	#map {
 		width: 800px;
-		height: 480px;
 	}
 }
 @media (min-width: 1350px) {
@@ -78,7 +70,6 @@ html, body {
 	}
 	#map {
 		width: 840px;
-		height: 540px;
 	}
 }
 .text-input-search {

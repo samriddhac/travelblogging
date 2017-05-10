@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { switchToMedia } from '../actions/index';
+import { switchToMedia, changeMobileView } from '../actions/index';
 import Carousel3d from '../components/carousel3d';
 import StreetView from '../components/streetview';
-import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
+import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360, MOBILE_VIEW_MAP} from '../common/constants';
 
 class MediaContainer extends Component {
 
@@ -47,6 +47,7 @@ class MediaContainer extends Component {
 	}
 	close(e) {
 		this.props.switchToMedia(false);
+		this.props.changeMobileView(MOBILE_VIEW_MAP);
 	}
 	render() {
 		let {name, type, mediaList, coord } = this.props;
@@ -58,7 +59,7 @@ class MediaContainer extends Component {
 			<div className={this.getContainerClass()} style={this.getStyle()}>
 				<div className="media-bg-btn">
 					<span className="media-bg-btn-item"><button className="btn btn-success btn-xs" onClick={this.setCss}>{this.state.displayText}</button></span>
-					<span className="close-item close-item-lg media-bg-btn-item close-item-m-list" aria-hidden="true" onClick={this.close}>&times;</span>
+					<span onClick={this.close}><img src='./images/icons/cross.png' width="20px" height="20px"/></span>
 				</div>
 				{view}
 			</div>
@@ -76,4 +77,4 @@ function mapStateToProps(state) {
 		coord:state.mediastate.coord
 	};
 }
-export default connect(mapStateToProps, {switchToMedia})(MediaContainer);
+export default connect(mapStateToProps, {switchToMedia, changeMobileView})(MediaContainer);

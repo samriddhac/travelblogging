@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { switchToMedia } from '../actions/index';
-import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360} from '../common/constants';
+import { switchToMedia, changeMobileView } from '../actions/index';
+import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360, MOBILE_VIEW_MEDIA} from '../common/constants';
 import Nav3d from './nav3d';
 import googleOptions from '../data/gmap-options.json';
 
@@ -76,16 +76,19 @@ class GoogleMap extends Component {
 		const coord = this.getCoord(e.target);
 		const placeName = e.target.getAttribute('data-place');
 		this.props.switchToMedia(true, TYPE_IMAGE, placeName, coord);
+		this.props.changeMobileView(MOBILE_VIEW_MEDIA);
 	}
 	showVideo(e) {
 		const coord = this.getCoord(e.target);
 		const placeName = e.target.getAttribute('data-place');
 		this.props.switchToMedia(true, TYPE_VIDEO, placeName, coord);
+		this.props.changeMobileView(MOBILE_VIEW_MEDIA);
 	}
 	show360(e) {
 		const coord = this.getCoord(e.target);
 		const placeName = e.target.getAttribute('data-place');
 		this.props.switchToMedia(true, TYPE_360, placeName, coord);
+		this.props.changeMobileView(MOBILE_VIEW_MEDIA);
 	}
 	onOptionClick(type) {
 		this.searchPlaceAttactions(null, type);
@@ -244,4 +247,4 @@ function mapStateToProps(state) {
 	return newprop;
 }
 
-export default connect(mapStateToProps, {switchToMedia})(GoogleMap);
+export default connect(mapStateToProps, {switchToMedia, changeMobileView})(GoogleMap);

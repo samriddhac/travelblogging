@@ -43,7 +43,7 @@ class Search extends Component {
 			  		value={this.state.searchterm}
 			  		onChange={(e)=>{ this.onInputChange(e) }} 
 			  		className="form-control text-input-search" 
-			  		placeholder="Search" />
+			  		placeholder="Search for City, Places" />
 			  		<button className="btn btn-default btn-md pull-right">Search</button>
 			  	</div>
 		  	</form>

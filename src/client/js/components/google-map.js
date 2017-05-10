@@ -175,8 +175,8 @@ class GoogleMap extends Component {
 		return(
 			<div className="info-window">
 				<div className="info-image-container">
-					<object data={photoUrl} type="image/png" width="100" height="120">
-						<img src="./images/icons/no-image.png" width="100" height="120" />
+					<object data={photoUrl} type="image/png" className="info-image">
+						<img src="./images/icons/no-image.png" className="info-image" />
 					</object>
 				</div>	
 				<div className="info-data-container">

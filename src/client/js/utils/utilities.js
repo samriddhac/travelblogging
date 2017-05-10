@@ -3,6 +3,9 @@ import _ from 'lodash';
 import countries from '../data/country.json';
 import weathericon from '../data/weather-icons.json';
 
+export function getUUID() {
+	return new Date().getUTCMilliseconds()+'a';
+}
 
 export function convertWeatherObject(obj) {
 	if(obj && obj!==null) {

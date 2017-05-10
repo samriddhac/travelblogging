@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {getUUID} from '../utils/utilities';
 
 export default class Nav3d extends Component {
 

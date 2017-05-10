@@ -20,8 +20,8 @@ class MobileMapContainer extends Component {
 	render() {
 		return (
 			<div className="mobile-map-container">
-				<div>
-					<img src="./images/icons/arrow-back.ico" width="20px" height="20px"/>
+				<div className="mobile-back-btn" onClick={this.close}>
+					<img src="./images/icons/arrow-back.ico" width="40px" height="40px"/>
 				</div>
 				<GoogleMap />
 			</div>

@@ -21,23 +21,27 @@ html, body {
 }
 #map {
 	position: absolute;
-	height:88vh;
+	height:90.5vh;
 }
 .mobile-map-container {
-	margin-top: 5px;
-	margin-bottom: 5px;
+	position: relative;
 }
+.mobile-back-btn {
+	position: absolute;
+	z-index: 111;
+}
+.mobile-map-position {}
 .list-location-container {
 	overflow-y: scroll;
 	margin-bottom: 0px;
 	max-height: 75vh;
 }
 @media (min-width: 300px) and (max-width: 736px) {
-  .container {
-    width: 95%;
-  }
   #map {
-    width: 95%;
+    width: 100%;
+  }
+  .mobile-map-position {
+  	padding: 0px;
   }
 }
 @media (min-width: 768px) {

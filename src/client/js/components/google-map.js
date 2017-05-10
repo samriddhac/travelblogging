@@ -230,7 +230,7 @@ class GoogleMap extends Component {
 
 	render()  {
 		return (
-			<div className="col-md-8 bg-dusky">
+			<div className="col-md-8 bg-dusky mobile-map-position">
 				<div id="map" className="full-page-height" ref="map"></div>
 				<Nav3d width="64" height="80" mediaList={this.optionList} 
 				onOptionClick={this.onOptionClick} />

@@ -18,7 +18,6 @@ class MobileMapContainer extends Component {
 		this.close = this.close.bind(this);
 	}
 	close(e) {
-		console.log('Close called');
 		this.setState({
  			cssClass: 'mobile-map-container-leave'
  		});

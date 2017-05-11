@@ -5,25 +5,37 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import ListItem from '../components/list-item';
 import { searchCity, goToPlace, removeListItem, saveFav, changeMobileView } from '../actions/index';
 import { listitemconfig } from '../utils/configs';
+import Loader from '../components/loader';
 
 class Search extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {searchterm : ''};
+		this.state = {searchterm : '', loading: false};
 		this.onFormSubmit = this.onFormSubmit.bind(this);
 	}
 
 	onFormSubmit(event) {
 		event.preventDefault();
+		let newState = { ...this.state, loading: true};
 		if(this.state.searchterm && this.state.searchterm!=='') {
 			this.props.searchCity(this.state.searchterm);
-			this.setState({ searchterm: '' });
+			this.setState({ 
+				searchterm: '',
+				loading:true
+			});
 		}
 	}
 
+	componentWillReceiveProps(nextProps) {
+		this.setState({ 
+				searchterm: '',
+				loading:false
+			});
+	}
+
 	onInputChange(e) {
-		this.setState({ searchterm: e.target.value });
+		this.setState({ ...this.state, searchterm: e.target.value });
 	}
 
 	processChilds(city) {
@@ -33,7 +45,14 @@ class Search extends Component {
 			changeMobileView = {this.props.changeMobileView}/>
 		);
 	}
-
+	getLoadingStyle() {
+		if(this.state.loading === true) {
+			return { display: 'block'};
+		}
+		else {
+			return { display: 'none'}
+		}
+	}
 	render() {
 		return (
 			<div id="search" className="tab-pane fade in active">
@@ -45,6 +64,7 @@ class Search extends Component {
 			  		className="form-control text-input-search" 
 			  		placeholder="Search for City, Places" />
 			  		<button className="btn btn-default btn-md pull-right">Search</button>
+			  		<div style={this.getLoadingStyle()}><Loader/></div>
 			  	</div>
 		  	</form>
 		    <ul className="list-group bg-dusky list-location-container">

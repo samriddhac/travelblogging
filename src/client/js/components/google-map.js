@@ -7,6 +7,7 @@ import { switchToMedia, changeMobileView } from '../actions/index';
 import {TYPE_IMAGE, TYPE_VIDEO, TYPE_360, MOBILE_VIEW_MEDIA} from '../common/constants';
 import Nav3d from './nav3d';
 import googleOptions from '../data/gmap-options.json';
+import Loader from '../components/loader';
 
 const zoom =14;
 const pointOfInterest = '+point+of+interest';
@@ -15,6 +16,7 @@ class GoogleMap extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {showloader: false};
 		this.onFoundAttraction = this.onFoundAttraction.bind(this);
 		this.setAttractionmarkers = this.setAttractionmarkers.bind(this);
 		this.renderInfoWindow = this.renderInfoWindow.bind(this);
@@ -43,6 +45,7 @@ class GoogleMap extends Component {
 	}
 	searchPlaceAttactions(name, type) {
 		let request = null;
+		this.setState({showloader:true});
 		if(name) {
 			this.resetMarkers();
 			request = {
@@ -61,6 +64,7 @@ class GoogleMap extends Component {
 	} 
 	onFoundAttraction(results, status) {
 		if (status == google.maps.places.PlacesServiceStatus.OK) {
+			this.setState({showloader:false});
 			this.setAttractionmarkers(results);
 		}
 	}
@@ -230,11 +234,19 @@ class GoogleMap extends Component {
 			}
 		}
 	}
-
+	getLoaderStyle() {
+		if(this.state.showloader === true) {
+			return {display:'block'};
+		}
+		else {
+			return {display:'none'};
+		}
+	}
 	render()  {
 		return (
 			<div className="col-md-8 bg-dusky mobile-map-position">
-				<div id="map" className="full-page-height" ref="map"></div>
+				<div style={this.getLoaderStyle()}><Loader /></div>
+				<div id="map" className="map-data-container" ref="map"></div>
 				<Nav3d width="64" height="80" mediaList={this.optionList} 
 				onOptionClick={this.onOptionClick} />
 			</div>
